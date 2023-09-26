@@ -1,9 +1,3 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
-
 ## Reminders
 
 - Your code must be placed in the `run.py` file
@@ -23,10 +17,6 @@ If you have credentials, such as in the Love Sandwiches project, you must create
 
 Connect your GitHub repository and deploy as normal.
 
-## Constraints
+#Client List App#
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+The purpose of this app is to all a trainer access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit a client's information and delete a client, as needed. The are also automated calculations done on the inputted data to determine the needs of the client.
