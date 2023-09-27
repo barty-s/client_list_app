@@ -17,6 +17,10 @@ If you have credentials, such as in the Love Sandwiches project, you must create
 
 Connect your GitHub repository and deploy as normal.
 
-#Client List App#
+# Client List App
 
-The purpose of this app is to all a trainer access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit a client's information and delete a client, as needed. The are also automated calculations done on the inputted data to determine the needs of the client.
+The purpose of this app is to allow a trainer to access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit a client's information and delete a client, as needed. There are also automated calculations done on the inputted data to determine the running training needs of the client which will assist the trainer in making a training plan for their client.
+
+## Credits
+
+- CI run-through project - Code to access APIs and Google Sheets
