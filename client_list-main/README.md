@@ -19,8 +19,14 @@ Connect your GitHub repository and deploy as normal.
 
 # Client List App
 
-The purpose of this app is to allow a trainer to access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit a client's information and delete a client, as needed. There are also automated calculations done on the inputted data to determine the running training needs of the client which will assist the trainer in making a training plan for their client.
+The purpose of this app is to allow a trainer to access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit a client's information and delete a client, as needed. There are also automated calculations done on the inputted data to determine the training needs of the client which will assist the trainer in making a training plan for their client. It is assumed that a new client has previous running experience and is hiring this trainer to improve their running time, therefore all inputs must be completed.
+
+## Future Features
+
+- to allow for clients with no previous running experience
+- to create options for other sports such as cycling, swimming, weight-lifting depending on the trainer's area of expertise
 
 ## Credits
 
 - CI run-through project - Code to access APIs and Google Sheets
+- https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response - for info on input validation
