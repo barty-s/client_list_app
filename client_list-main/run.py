@@ -15,7 +15,9 @@ SHEET = GSPREAD_CLIENT.open("client_list")
 
 running_worksheet = SHEET.worksheet("running")
 
-data = running_worksheet.get_all_values()
+# data = running_worksheet.get_all_values() - use this to retrieve client with email address?
+
+client_data = []
 
 
 def new_client_data():
@@ -50,6 +52,14 @@ def update_running_worksheet(data):
     print("Client successfully added\n")
 
 
-new_client = new_client_data()
-update_running_worksheet(new_client)
-print(new_client)
+def main():
+    """
+    Runs all functions in the program
+    """
+    new_client = new_client_data()
+    update_running_worksheet(new_client)
+    print(new_client)
+
+
+print("Welcome to Client List Data Automation\n")
+main()
