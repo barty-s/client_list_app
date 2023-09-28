@@ -13,9 +13,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("client_list")
 
-running = SHEET.worksheet("running")
+running_worksheet = SHEET.worksheet("running")
 
-data = running.get_all_values()
+data = running_worksheet.get_all_values()
 
 
 def new_client_data():
@@ -31,13 +31,23 @@ def new_client_data():
     distance = pyip.inputMenu(
         ["5km", "10km", "half-marathon", "marathon"], numbered=True
     )
-    current_pb = pyip.inputTime("Current PB to nearest minute as hh:mm : ")
-    next_race = pyip.inputDate("Date of next race as mm/dd/yyyy: ")
-    goal_time = pyip.inputTime("Goal time for next race to nearest minute as hh:mm : ")
+    current_pb = input("Current PB to nearest minute as hh:mm : ")
+    # next_race = pyip.inputDate("Date of next race as mm/dd/yyyy: ")
+    # goal_time = pyip.inputTime("Goal time for next race to nearest minute as hh:mm : ")
 
-    client_data = [name, email, age, distance, current_pb, next_race, goal_time]
+    client_data = [name, email, age, distance, current_pb]
     return client_data
 
 
+def update_running_worksheet(data):
+    """
+    Add the new client's information to running client list spreadsheet
+    """
+    print("Adding client to database...\n")
+    running_worksheet.append_row(data)
+    print("Client successfully added\n")
+
+
 new_client = new_client_data()
+update_running_worksheet(new_client)
 print(new_client)
