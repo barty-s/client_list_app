@@ -30,3 +30,4 @@ The purpose of this app is to allow a trainer to access their list of clients fo
 
 - CI run-through project - Code to access APIs and Google Sheets
 - https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response - for info on input validation
+- PyInputPlus info and explanation - https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p
