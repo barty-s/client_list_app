@@ -22,7 +22,7 @@ def new_client_data():
     """
     User adds data about their new client
     """
-    print("Let's add a new client")
+    print("Let's add a new client\n")
 
     name = input("Name: ")
     email = pyip.inputEmail("Email address: ")
@@ -31,14 +31,13 @@ def new_client_data():
     distance = pyip.inputMenu(
         ["5km", "10km", "half-marathon", "marathon"], numbered=True
     )
-    current_pb = pyip.inputTime("Current PB to nearest minute as 00:00 : ")
+    current_pb = pyip.inputTime("Current PB to nearest minute as hh:mm : ")
     next_race = pyip.inputDate("Date of next race as mm/dd/yyyy: ")
-    goal_time = pyip.inputTime("Goal time for next race to nearest minute as 00:00 : ")
+    goal_time = pyip.inputTime("Goal time for next race to nearest minute as hh:mm : ")
 
-    print(
-        f"New Client: Name - {name}, Email - {email}, Age - {age}  Race distance - {distance} Current PB - {current_pb} Next race on {next_race} with a goal time of {goal_time}"
-    )
+    client_data = [name, email, age, distance, current_pb, next_race, goal_time]
+    return client_data
 
 
-new_client_data()
-# print(data)
+new_client = new_client_data()
+print(new_client)
