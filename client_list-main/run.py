@@ -31,11 +31,13 @@ def new_client_data():
     distance = pyip.inputMenu(
         ["5km", "10km", "half-marathon", "marathon"], numbered=True
     )
-    current_pb = input("Current PB to nearest minute as hh:mm : ")
-    # next_race = pyip.inputDate("Date of next race as mm/dd/yyyy: ")
-    # goal_time = pyip.inputTime("Goal time for next race to nearest minute as hh:mm : ")
+    current_pb = str(pyip.inputTime("Current PB to nearest minute as hh:mm : "))
+    next_race = str(pyip.inputDate("Date of next race as mm/dd/yyyy: "))
+    goal_time = str(
+        pyip.inputTime("Goal time for next race to nearest minute as hh:mm : ")
+    )
 
-    client_data = [name, email, age, distance, current_pb]
+    client_data = [name, email, age, distance, current_pb, next_race, goal_time]
     return client_data
 
 
