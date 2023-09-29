@@ -52,13 +52,31 @@ def update_running_worksheet(data):
     print("Client successfully added\n")
 
 
+def search_client_email():
+    """
+    Searches for client using their email address
+    """
+    client_email = pyip.inputEmail("Search by client's email address: ")
+    email_list = running_worksheet.col_values(2)
+
+    for email in email_list:
+        try:
+            if client_email in email_list:
+                print(email)
+
+        except:
+            print("Client doesn't exist")
+            break
+
+
 def main():
     """
     Runs all functions in the program
     """
-    new_client = new_client_data()
-    update_running_worksheet(new_client)
-    print(new_client)
+    # new_client = new_client_data()
+    # update_running_worksheet(new_client)
+    # print(new_client)
+    search_client_email()
 
 
 print("Welcome to Client List Data Automation\n")
