@@ -56,26 +56,22 @@ def search_client_email():
     """
     Searches for client using their email address
     """
-    client_email = pyip.inputEmail("Search by client's email address: ")
-    email_list = running_worksheet.col_values(2)
-
-    for email in email_list:
-        try:
-            if client_email in email_list:
-                print(email)
-
-        except:
-            print("Client doesn't exist")
-            break
+    try:
+        client_email = pyip.inputEmail("Search by client's email address: ")
+        email_list = running_worksheet.col_values(2)
+        client_index = email_list.index(client_email)
+        print(running_worksheet.row_values((client_index + 1)))
+    except ValueError:
+        print("Client does not exist")
 
 
 def main():
     """
     Runs all functions in the program
     """
-    # new_client = new_client_data()
-    # update_running_worksheet(new_client)
-    # print(new_client)
+    new_client = new_client_data()
+    update_running_worksheet(new_client)
+    print(new_client)
     search_client_email()
 
 

@@ -19,7 +19,7 @@ Connect your GitHub repository and deploy as normal.
 
 # Client List App
 
-The purpose of this app is to allow a trainer to access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit a client's information and delete a client, as needed. There are also automated calculations done on the inputted data to determine the training needs of the client which will assist the trainer in making a training plan for their client. It is assumed that a new client has previous running experience and is hiring this trainer to improve their running time, therefore all inputs must be completed.
+The purpose of this app is to allow a trainer to access their list of clients for running training. The user i.e. the trainer, can add new clients, view clients, edit clients' information and delete clients, as needed. There are also automated calculations done on the input data to determine the training needs of the client which will assist the trainer in making a training plan. It is assumed that a new client has previous running experience and is hiring this trainer to improve their running time, therefore all inputs must be completed.
 
 ## Future Features
 
@@ -32,3 +32,4 @@ The purpose of this app is to allow a trainer to access their list of clients fo
 - https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response - for info on input validation
 - PyInputPlus info and explanation - https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p
 - Serialization for datetime (JSON) - https://www.youtube.com/watch?v=-2PrvZ420QM&t=405s (not used in the end)
+- For explanation of index() - https://www.programiz.com/python-programming/methods/list/index
