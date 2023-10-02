@@ -65,15 +65,31 @@ def search_client_email():
         print("Client does not exist")
 
 
+def delete_client_data():
+    try:
+        client_email = pyip.inputEmail("Search by client's email address: ")
+        email_list = running_worksheet.col_values(2)
+        client_index = email_list.index(client_email)
+
+    except ValueError:
+        print("Client does not exist")
+
+    delete_query = pyip.inputYesNo("Are you sure you want to delete this client?")
+    if delete_query:
+        running_worksheet.delete_rows((client_index + 1))
+        print("Client successfully deleted")
+
+
 def main():
     """
     Runs all functions in the program
     """
-    new_client = new_client_data()
-    update_running_worksheet(new_client)
-    print(new_client)
-    search_client_email()
+    # new_client = new_client_data()
+    # update_running_worksheet(new_client)
+    # print(new_client)
+    # search_client_email()
+    delete_client_data()
 
 
-print("Welcome to Client List Data Automation\n")
+print("Welcome to your Running Client List Data Automation\n")
 main()
