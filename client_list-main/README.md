@@ -26,6 +26,10 @@ The purpose of this app is to allow a trainer to access their list of clients fo
 - to allow for clients with no previous running experience
 - to create options for other sports such as cycling, swimming, weight-lifting depending on the trainer's area of expertise
 
+## Technologies
+
+- PyInputPlus module
+
 ## Credits
 
 - CI run-through project - Code to access APIs and Google Sheets

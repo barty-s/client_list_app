@@ -43,9 +43,9 @@ def new_client_data():
     return client_data
 
 
-def update_running_worksheet(data):
+def add_new_client_to_worksheet(data):
     """
-    Add the new client's information to running client list spreadsheet
+    Adds the new client's information to running client list spreadsheet
     """
     print("Adding client to database...\n")
     running_worksheet.append_row(data)
@@ -60,24 +60,50 @@ def search_client_email():
         client_email = pyip.inputEmail("Search by client's email address: ")
         email_list = running_worksheet.col_values(2)
         client_index = email_list.index(client_email)
-        print(running_worksheet.row_values((client_index + 1)))
-    except ValueError:
-        print("Client does not exist")
-
-
-def delete_client_data():
-    try:
-        client_email = pyip.inputEmail("Search by client's email address: ")
-        email_list = running_worksheet.col_values(2)
-        client_index = email_list.index(client_email)
+        return client_index
 
     except ValueError:
         print("Client does not exist")
 
-    delete_query = pyip.inputYesNo("Are you sure you want to delete this client?")
-    if delete_query:
-        running_worksheet.delete_rows((client_index + 1))
+
+def display_client_data(data):
+    """Displays the client data retreived using the client's email address"""
+    print(running_worksheet.row_values((data + 1)))
+
+
+def delete_client_data(data):
+    """
+    Displays a client's data. Gives option to delete the client's data. If answer is yes, deletes the client's data from the googlesheet database
+    """
+    display_client_data(data)
+    delete_query = pyip.inputYesNo(
+        "Are you sure you want to delete this client? - enter y/n\n"
+    )
+
+    if delete_query == "yes":
+        running_worksheet.delete_rows((data + 1))
         print("Client successfully deleted")
+    else:
+        print("Client data not deleted")
+
+
+def client_list_menu():
+    print("What you like to do? Type a number from the list below:\n")
+    actions = pyip.inputMenu(
+        ["Add a client", "Display a client", "Delete a client"],
+        numbered=True,
+    )
+
+    if actions == "Add a client":
+        new_client = new_client_data()
+        add_new_client_to_worksheet(new_client)
+        print(new_client)
+    elif actions == "Display a client":
+        searched_client_index = search_client_email()
+        display_client_data(searched_client_index)
+    elif actions == "Delete a client":
+        searched_client_index = search_client_email()
+        delete_client_data(searched_client_index)
 
 
 def main():
@@ -85,10 +111,12 @@ def main():
     Runs all functions in the program
     """
     # new_client = new_client_data()
-    # update_running_worksheet(new_client)
+    # add_new_client_to_worksheet(new_client)
     # print(new_client)
-    # search_client_email()
-    delete_client_data()
+    # searched_client_index = search_client_email()
+    # display_client_data(searched_client_index)
+    # delete_client_data(searched_client_index)
+    client_list_menu()
 
 
 print("Welcome to your Running Client List Data Automation\n")
