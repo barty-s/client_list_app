@@ -74,7 +74,8 @@ def display_client_data(data):
 
 def edit_client_data(data):
     """
-    Displays the client data retreived using the client's email address and offers the user options to edit the client's data
+    Displays the client's data retreived using their email address.
+    Then offers the user options to edit the client's data.
     """
     display_client_data(data)
     print("\n")
@@ -87,7 +88,7 @@ def edit_client_data(data):
             "Goal distance",
             "Current PB",
             "Next race date",
-            "Goal time",
+            "Goal time" "\n",
         ],
         numbered=True,
     )
@@ -108,7 +109,7 @@ def edit_client_data(data):
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
     elif edit_actions == "Goal distance":
-        print("You will need to update the goal time too")
+        print("You will need to update the goal time too \n")
         print("New goal distance: \n")
         new_goal_distance = pyip.inputMenu(
             ["5km", "10km", "half-marathon", "marathon" "\n"], numbered=True
@@ -141,7 +142,8 @@ def edit_client_data(data):
 
 def delete_client_data(data):
     """
-    Displays a client's data. Gives option to delete the client's data. If answer is yes, deletes the client's data from the googlesheet database
+    Displays a client's data. Gives option to delete the client's data.
+    If answer is yes, deletes the client's data from the googlesheet database.
     """
     display_client_data(data)
     delete_query = pyip.inputYesNo(
@@ -179,16 +181,25 @@ def client_list_menu():
         client_list_menu()
     elif actions == "Display a client":
         searched_client_index = search_client_email()
-        display_client_data(searched_client_index)
-        client_list_menu()
+        if searched_client_index:
+            display_client_data(searched_client_index)
+            client_list_menu()
+        else:
+            client_list_menu()
     elif actions == "Delete a client":
         searched_client_index = search_client_email()
-        delete_client_data(searched_client_index)
-        client_list_menu()
+        if searched_client_index:
+            delete_client_data(searched_client_index)
+            client_list_menu()
+        else:
+            client_list_menu()
     elif actions == "Edit a client":
         searched_client_index = search_client_email()
-        edit_client_data(searched_client_index)
-        client_list_menu()
+        if searched_client_index():
+            edit_client_data(searched_client_index)
+            client_list_menu()
+        else:
+            client_list_menu()
     elif actions == "Exit":
         print("See you next time")
         sys.exit()
