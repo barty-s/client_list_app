@@ -27,7 +27,7 @@ def new_client_data():
     """
     print("Let's add a new client\n")
 
-    name = input("Name: \n")
+    name = pyip.inputStr("Name: \n")
     email = pyip.inputEmail("Email address: \n")
     age = pyip.inputInt("Age: \n", min=18)
     print("Goal distance: \n")
@@ -94,7 +94,7 @@ def edit_client_data(data):
     )
 
     if edit_actions == "Name":
-        new_name = input("Update name: \n")
+        new_name = pyip.inputStr("Update name: \n")
         running_worksheet.update_cell((data + 1), 1, new_name)
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
