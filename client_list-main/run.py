@@ -72,6 +72,32 @@ def display_client_data(data):
     print(running_worksheet.row_values((data + 1)))
 
 
+def edit_client_data(data):
+    """
+    Displays the client data retreived using the client's email address and offers the user options to edit the client's data
+    """
+    display_client_data(data)
+    print("\n")
+    print("What would you like to edit?\n")
+    edit_actions = pyip.inputMenu(
+        [
+            "Name",
+            "Email",
+            "Age",
+            "Goal distance",
+            "Current PB",
+            "Next race date",
+            "Goal time",
+        ],
+        numbered=True,
+    )
+
+    if edit_actions == "Name":
+        new_name = input("Name: \n")
+        running_worksheet.update_cell((data + 1), 1, new_name)
+        print(running_worksheet.row_values((data + 1)))
+
+
 def delete_client_data(data):
     """
     Displays a client's data. Gives option to delete the client's data. If answer is yes, deletes the client's data from the googlesheet database
@@ -91,11 +117,17 @@ def delete_client_data(data):
 def client_list_menu():
     """
     Displays a list of actions for the user to choose from i.e add, display, delete client or exit program.
-    The main menu is displayed after each action.
+    The main menu is displayed again after each action is completed.
     """
     print("What you like to do? Type a number from the list below:\n")
     actions = pyip.inputMenu(
-        ["Add a client", "Display a client", "Delete a client", "Exit" "\n"],
+        [
+            "Add a client",
+            "Display a client",
+            "Delete a client",
+            "Edit a client",
+            "Exit" "\n",
+        ],
         numbered=True,
     )
 
@@ -112,6 +144,9 @@ def client_list_menu():
         searched_client_index = search_client_email()
         delete_client_data(searched_client_index)
         client_list_menu()
+    elif actions == "Edit a client":
+        searched_client_index = search_client_email()
+        edit_client_data(searched_client_index)
     elif actions == "Exit":
         print("See you next time")
         sys.exit()
@@ -122,7 +157,7 @@ def client_list_menu():
 
 def main():
     """
-    Run functions to display list of actions in the program
+    Runs function to display list of actions in the program
     """
     client_list_menu()
 
