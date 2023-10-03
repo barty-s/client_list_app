@@ -32,7 +32,7 @@ def new_client_data():
     age = pyip.inputInt("Age: \n", min=18)
     print("Goal distance: \n")
     distance = pyip.inputMenu(
-        ["5km", "10km", "half-marathon", "marathon" "\n"], numbered=True
+        ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
     )
     current_pb = str(pyip.inputTime("Current PB to nearest minute as hh:mm : \n"))
     next_race = str(pyip.inputDate("Date of next race as mm/dd/yyyy: \n"))
@@ -88,7 +88,7 @@ def edit_client_data(data):
             "Goal distance",
             "Current PB",
             "Next race date",
-            "Goal time" "\n",
+            "Goal time",
         ],
         numbered=True,
     )
@@ -109,15 +109,23 @@ def edit_client_data(data):
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
     elif edit_actions == "Goal distance":
-        print("You will need to update the goal time too \n")
+        print(
+            "You will need to update the current PB for this distance and the goal time too \n"
+        )
         print("New goal distance: \n")
         new_goal_distance = pyip.inputMenu(
-            ["5km", "10km", "half-marathon", "marathon" "\n"], numbered=True
+            ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
+        )
+        new_pb = str(
+            pyip.inputTime("PB for this distance to nearest minute as hh:mm : \n")
         )
         new_goal_time = str(
-            pyip.inputTime("Goal time for next race to nearest minute as hh:mm : \n")
+            pyip.inputTime(
+                "Goal time for the next race of this distance to nearest minute as hh:mm : \n"
+            )
         )
         running_worksheet.update_cell((data + 1), 4, new_goal_distance)
+        running_worksheet.update_cell((data + 1), 5, new_pb)
         running_worksheet.update_cell((data + 1), 7, new_goal_time)
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
@@ -167,13 +175,13 @@ def client_list_menu():
         [
             "Add a client",
             "Display a client",
-            "Delete a client",
             "Edit a client",
-            "Exit" "\n",
+            "Delete a client",
+            "Exit",
         ],
         numbered=True,
     )
-
+    print("\n")
     if actions == "Add a client":
         new_client = new_client_data()
         add_new_client_to_worksheet(new_client)
@@ -186,6 +194,13 @@ def client_list_menu():
             client_list_menu()
         else:
             client_list_menu()
+    elif actions == "Edit a client":
+        searched_client_index = search_client_email()
+        if searched_client_index:
+            edit_client_data(searched_client_index)
+            client_list_menu()
+        else:
+            client_list_menu()
     elif actions == "Delete a client":
         searched_client_index = search_client_email()
         if searched_client_index:
@@ -193,15 +208,8 @@ def client_list_menu():
             client_list_menu()
         else:
             client_list_menu()
-    elif actions == "Edit a client":
-        searched_client_index = search_client_email()
-        if searched_client_index():
-            edit_client_data(searched_client_index)
-            client_list_menu()
-        else:
-            client_list_menu()
     elif actions == "Exit":
-        print("See you next time")
+        print("See you next time!")
         sys.exit()
 
 
