@@ -36,5 +36,5 @@ The purpose of this app is to allow a trainer to access their list of clients fo
 - https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response - for info on input validation
 - PyInputPlus info and explanation - https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p
 - Serialization for datetime (JSON) - https://www.youtube.com/watch?v=-2PrvZ420QM&t=405s (not used in the end)
-- For explanation of index() - https://www.programiz.com/python-programming/methods/list/index
-- For explanation of googlesheets methods - https://www.python-engineer.com/posts/google-sheets-api/
+- For explanation of index() method - https://www.programiz.com/python-programming/methods/list/index
+- For explanation of googlesheets methods - https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/

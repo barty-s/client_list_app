@@ -93,8 +93,49 @@ def edit_client_data(data):
     )
 
     if edit_actions == "Name":
-        new_name = input("Name: \n")
+        new_name = input("Update name: \n")
         running_worksheet.update_cell((data + 1), 1, new_name)
+        print("Client successfully updated")
+        print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "Email":
+        new_email = pyip.inputEmail("Update email address: \n")
+        running_worksheet.update_cell((data + 1), 2, new_email)
+        print("Client successfully updated")
+        print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "Age":
+        new_age = pyip.inputInt("Update age: \n", min=18)
+        running_worksheet.update_cell((data + 1), 3, new_age)
+        print("Client successfully updated")
+        print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "Goal distance":
+        print("You will need to update the goal time too")
+        print("New goal distance: \n")
+        new_goal_distance = pyip.inputMenu(
+            ["5km", "10km", "half-marathon", "marathon" "\n"], numbered=True
+        )
+        new_goal_time = str(
+            pyip.inputTime("Goal time for next race to nearest minute as hh:mm : \n")
+        )
+        running_worksheet.update_cell((data + 1), 4, new_goal_distance)
+        running_worksheet.update_cell((data + 1), 7, new_goal_time)
+        print("Client successfully updated")
+        print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "New PB":
+        new_pb = str(pyip.inputTime("New PB to nearest minute as hh:mm : \n"))
+        running_worksheet.update_cell((data + 1), 5, new_pb)
+        print("Client successfully updated")
+        print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "Next race date":
+        new_next_race_date = str(pyip.inputDate("Date of next race as mm/dd/yyyy: \n"))
+        running_worksheet.update_cell((data + 1), 6, new_next_race_date)
+        print("Client successfully updated")
+        print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "Goal Time":
+        new_goal_time = str(
+            pyip.inputTime("Goal time for next race to nearest minute as hh:mm : \n")
+        )
+        running_worksheet.update_cell((data + 1), 7, new_goal_time)
+        print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
 
 
@@ -147,6 +188,7 @@ def client_list_menu():
     elif actions == "Edit a client":
         searched_client_index = search_client_email()
         edit_client_data(searched_client_index)
+        client_list_menu()
     elif actions == "Exit":
         print("See you next time")
         sys.exit()
