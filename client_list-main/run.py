@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 import sys
+import date
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -34,14 +35,30 @@ def new_client_data():
     distance = pyip.inputMenu(
         ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
     )
-    current_pb = str(pyip.inputTime("Current PB to nearest minute as hh:mm : \n"))
-    next_race = str(pyip.inputDate("Date of next race as mm/dd/yyyy: \n"))
+    current_pb = str(
+        pyip.inputTime(f"Current PB for {distance} to nearest minute as hh:mm : \n")
+    )
+    next_race = pyip.inputDate(f"Date of next {distance} race as mm/dd/yyyy: \n")
     goal_time = str(
-        pyip.inputTime("Goal time for next race to nearest minute as hh:mm : \n")
+        pyip.inputTime(
+            f"Goal time for next {distance} race to nearest minute as hh:mm : \n"
+        )
     )
 
-    client_data = [name, email, age, distance, current_pb, next_race, goal_time]
+    client_data = [name, email, age, distance, current_pb, str(next_race), goal_time]
     return client_data
+
+
+def calculate_days_until_next_race(data):
+    """
+    Calculates a countdown for how many days left until the client's race day
+    """
+    next_race = data[5]
+    next_race_date = date.fromisoformat(next_race)
+    today = date.today()
+    days_til_race = abs(next_race_date - today)
+    data.append(days_til_race.days)
+    return data
 
 
 def add_new_client_to_worksheet(data):
@@ -184,7 +201,8 @@ def client_list_menu():
     print("\n")
     if actions == "Add a client":
         new_client = new_client_data()
-        add_new_client_to_worksheet(new_client)
+        new_client_with_days = calculate_days_until_next_race(new_client)
+        add_new_client_to_worksheet(new_client_with_days)
         print(new_client)
         print("\n")
         client_list_menu()

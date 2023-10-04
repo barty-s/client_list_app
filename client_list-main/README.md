@@ -38,3 +38,4 @@ The purpose of this app is to allow a trainer to access their list of clients fo
 - Serialization for datetime (JSON) - https://www.youtube.com/watch?v=-2PrvZ420QM&t=405s (not used in the end)
 - For explanation of index() method - https://www.programiz.com/python-programming/methods/list/index
 - For explanation of googlesheets methods - https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/
+- datetime and date countdown explation - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html
