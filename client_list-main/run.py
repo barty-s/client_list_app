@@ -2,7 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 import sys
-import date
+from datetime import date
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -28,7 +28,9 @@ def new_client_data():
     """
     print("Let's add a new client\n")
 
-    name = pyip.inputStr("Name: \n")
+    name = pyip.inputRegex(
+        r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Client's Full Name: \n"
+    ).title()
     email = pyip.inputEmail("Email address: \n")
     age = pyip.inputInt("Age: \n", min=18)
     print("Goal distance: \n")
@@ -111,7 +113,9 @@ def edit_client_data(data):
     )
 
     if edit_actions == "Name":
-        new_name = pyip.inputStr("Update name: \n")
+        new_name = pyip.inputRegex(
+            r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update client's Full Name: \n"
+        ).title()
         running_worksheet.update_cell((data + 1), 1, new_name)
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
