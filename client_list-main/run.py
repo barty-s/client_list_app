@@ -186,27 +186,34 @@ def client_list_menu():
         new_client = new_client_data()
         add_new_client_to_worksheet(new_client)
         print(new_client)
+        print("\n")
         client_list_menu()
     elif actions == "Display a client":
         searched_client_index = search_client_email()
         if searched_client_index:
             display_client_data(searched_client_index)
+            print("\n")
             client_list_menu()
         else:
+            print("\n")
             client_list_menu()
     elif actions == "Edit a client":
         searched_client_index = search_client_email()
         if searched_client_index:
             edit_client_data(searched_client_index)
+            print("\n")
             client_list_menu()
         else:
+            print("\n")
             client_list_menu()
     elif actions == "Delete a client":
         searched_client_index = search_client_email()
         if searched_client_index:
             delete_client_data(searched_client_index)
+            print("\n")
             client_list_menu()
         else:
+            print("\n")
             client_list_menu()
     elif actions == "Exit":
         print("See you next time!")
