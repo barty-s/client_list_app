@@ -20,6 +20,7 @@ running_worksheet = SHEET.worksheet("running")
 # data = running_worksheet.get_all_values() - use this to retrieve client with email address?
 
 client_data = []
+today = date.today()
 
 
 def new_client_data():
@@ -41,14 +42,33 @@ def new_client_data():
         pyip.inputTime(f"Current PB for {distance} to nearest minute as hh:mm : \n")
     )
     next_race = pyip.inputDate(f"Date of next {distance} race as mm/dd/yyyy: \n")
+    validated_next_race = validate_race_date(next_race)
     goal_time = str(
         pyip.inputTime(
             f"Goal time for next {distance} race to nearest minute as hh:mm : \n"
         )
     )
 
-    client_data = [name, email, age, distance, current_pb, str(next_race), goal_time]
+    client_data = [
+        name,
+        email,
+        age,
+        distance,
+        current_pb,
+        str(validated_next_race),
+        goal_time,
+    ]
     return client_data
+
+
+def validate_race_date(date):
+    try:
+        today >= date
+        print("Race date must be in the future! Please try again...")
+        next_race = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
+        return next_race
+    except:
+        return date
 
 
 def calculate_days_until_next_race(data):
@@ -57,7 +77,6 @@ def calculate_days_until_next_race(data):
     """
     next_race = data[5]
     next_race_date = date.fromisoformat(next_race)
-    today = date.today()
     days_til_race = abs(next_race_date - today)
     data.append(days_til_race.days)
     return data
