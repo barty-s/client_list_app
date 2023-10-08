@@ -14,6 +14,27 @@ The user, i.e. the trainer, can add new clients, view clients, edit clients' inf
 
 - Add in workflow to demonstrate the features
 
+As demonstated in the workflow image above, this app has 5 main features:
+
+1. Add a client - the user can input their new client's data. The user will have to input:
+
+- the client's full name
+- a valid email address which doesn't already exist in the client list
+- the client's age, with the minimum age being 18
+- the race distance the client is training for
+- the client's current Personal Best (PB) time for the race distance
+- the date of the client's next race, in mm/dd/yyyy format and which must be a future date
+- the time the client wants to complete this race in
+  The data will be displayed once all the input sections have been correctly completed, and the user will be shown how many days there are until the client's next race.
+
+2. Display a client - the user can search for an existing client and their data will be displayed. Originally, the client's last name was going to be used to search but during the development of the app I was advised to use the client's email, as that is a unique datum and will avoid issues if there exists multiple clients with the same last name.
+
+3. Edit a client - the user can search for a client using their email address. If the client exists the user will be given the option to edit any of the inputs. If the user wants to edit the race distance, they will be asked to edit the client's PB and goal time too
+
+4. Delete a client - the user can search for a client using their email address. The client's data will be displayed and the user will be asked if they are sure they want to delete the information and choose Y or N.
+
+5. Exit - the user can exit the program
+
 ## Future Features
 
 - to allow for clients with no previous running experience
