@@ -32,7 +32,8 @@ def new_client_data():
     name = pyip.inputRegex(
         r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Client's Full Name: \n"
     ).title()
-    email = pyip.inputEmail("Email address: \n")
+    client_email = pyip.inputEmail("Email address: \n")
+    validated_email = validate_email(client_email)
     age = pyip.inputInt("Age: \n", min=18)
     print("Goal distance: \n")
     distance = pyip.inputMenu(
@@ -51,7 +52,7 @@ def new_client_data():
 
     client_data = [
         name,
-        email,
+        validated_email,
         age,
         distance,
         current_pb,
@@ -59,6 +60,19 @@ def new_client_data():
         goal_time,
     ]
     return client_data
+
+
+def validate_email(email):
+    """
+    Checks database to see if a client already exists with the input email address and then warns user
+    """
+    email_list = running_worksheet.col_values(2)
+    if email in email_list:
+        print("A client already exists with this email")
+        print("\n")
+        client_list_menu()
+    else:
+        return email
 
 
 def validate_race_date(date):
