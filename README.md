@@ -42,8 +42,8 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Future Features
 
-- to allow for clients with no previous running experience
-- to create options for other sports such as cycling, swimming, weight-lifting depending on the trainer's area of expertise
+- I would like to allow for clients with no previous running experience to be added to the client list and develop the automated calculations to accomodate this feature.
+- I would to create input and automated calculations options for other sports such as cycling, swimming, weight-lifting etc depending on the trainer's area of expertise and their clients' needs.
 
 ## Technologies
 
@@ -53,6 +53,10 @@ As demonstated in the workflow image above, this app has 5 main features:
 - sys module - to access the interpreter
 - datetime - to format date and time inputs
 - tabulate - to format data into tables
+- VS Code - as the program editor
+- Git - for terminal actions
+- GitHub Desktop - to commit and push changes in the app's code
+- Heroku - to host the app in a mock terminal
 
 ## Testing
 
