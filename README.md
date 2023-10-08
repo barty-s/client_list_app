@@ -60,7 +60,38 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Testing
 
+- CI Python Linter https://pep8ci.herokuapp.com/
+
 ## Deployment
+
+### To Deploy on Heroku
+
+1. Use Code Institute's Python Essentials Template.
+2. Create a new repository and write the program code.
+3. Creat a requirements.txt file and add '\n' to the end of each input to accommodate the bug on Heroku.
+4. Create a Heroku student account.
+5. Log in and select create a new app.
+6. Create an app name and region.
+7. Select the deployment method to connect to the repository via GitHub, then search and connect the app repo.
+8. Enable automatic deployment and select the main branch, or alternatively select manual deployment
+9. In the settings tab select 'config vars' and copy/paste in the creds.json file. And also, 'PORT' with value 8000.
+10. Add the buildpacks in this order: 1 - Python, 2 - Node.js
+11. Finally, deploy the app
+
+### To Fork the Repository
+
+1. In the GitHub repository, click on the 'Fork' button
+2. Edit the repository name and description
+3. Click the green 'Create Fork' button
+
+### To Clone The Repository
+
+1. Navigate to the GitHub repository
+2. Click the green 'Code' button
+3. Select if you would prefer to clone using HTTPS, SSH, or Github CLI
+4. Click the copy button to copy the URL to your clipboard
+5. Open Git Bash and change the current working directory to the cloned directory
+6. Type 'git clone' and paste the URL from the clipboard - press Enter to create your local clone.
 
 ## Credits
 
