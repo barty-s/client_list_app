@@ -15,10 +15,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("client_list")
 
+# Global variables list
 running_worksheet = SHEET.worksheet("running")
-
-# data = running_worksheet.get_all_values() - use this to retrieve client with email address?
-
 client_data = []
 today = date.today()
 
