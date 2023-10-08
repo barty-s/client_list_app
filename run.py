@@ -65,12 +65,11 @@ def validate_race_date(date):
     """
     Makes sure that the date entered by the user for the client's next race is in the future
     """
-    try:
-        today >= date
+    if today >= date:
         print("Race date must be in the future! Please try again...")
         next_race = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
         return next_race
-    except:
+    else:
         return date
 
 
