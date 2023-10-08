@@ -21,7 +21,12 @@ The user, i.e. the trainer, can add new clients, view clients, edit clients' inf
 
 ## Technologies
 
-- PyInputPlus module for additional input validation
+- PyInputPlus module - for additional input validation
+- google oauth - to access credentials in the creds.json file
+- gspread - to link the googlesheets spreadsheet to the app actions
+- sys module - to access the interpreter
+- datetime - to format date and time inputs
+- tabulate - to format data into tables
 
 ## Testing
 
