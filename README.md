@@ -10,9 +10,14 @@ The user, i.e. the trainer, can add new clients, view clients, edit clients' inf
 
 ## User Stories
 
+1. As a user, a running trainer, I want to be able to add my client's data and have the program give me outputs on how many days until the client's next race.
+2. As a user, I want to be able to view my client's information on searching the spreadsheet with their email address.
+3. As a user, I want to be able to edit any of the client's data.
+4. As a user, I want to be able to delete a client from the client list if I need to.
+
 ## Features
 
-- Add in workflow to demonstrate the features
+<img src='/readme/workflow.png' >
 
 As demonstated in the workflow image above, this app has 5 main features:
 
@@ -55,12 +60,13 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Credits
 
-- CI run-through project - Code to access APIs and Google Sheets
-- for contact book structure explanation https://www.geeksforgeeks.org/implementing-a-contacts-directory-in-python/
+- https://www.lucidchart.com - to create the workflow image
+- CI run-through project - code to access APIs and Google Sheets
+- https://www.geeksforgeeks.org/implementing-a-contacts-directory-in-python/ - for contact book structure explanation
 - https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response - for info on input validation
-- PyInputPlus info and explanation - https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p, https://stackoverflow.com/questions/66494597/pyinputplus-allowregexes-keyword-allows-any-input
-- Serialization for datetime (JSON) - https://www.youtube.com/watch?v=-2PrvZ420QM&t=405s (not used in the end)
-- For explanation of index() method - https://www.programiz.com/python-programming/methods/list/index
-- For explanation of googlesheets methods - https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/
-- datetime and date countdown explanation - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html
-- for help with date validation - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python
+- https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p, https://stackoverflow.com/questions/66494597/pyinputplus-allowregexes-keyword-allows-any-input - PyInputPlus info and explanations
+- https://www.youtube.com/watch?v=-2PrvZ420QM&t=405s - Serialization for datetime (JSON) - (not used in the end)
+- https://www.programiz.com/python-programming/methods/list/index - For explanation of index() method -
+- https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/ - For explanation of googlesheets methods
+- https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html -datetime and date countdown explanation
+- https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python - for help with date validation
