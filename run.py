@@ -41,6 +41,7 @@ def new_client_data():
     current_pb = validate_times(race_distance)
     print(f"Goal time for next {race_distance} race to nearest minute as hh:mm :")
     goal_time = validate_times(race_distance)
+    validated_goal_time = validate_goal_time(goal_time, race_distance)
     next_race = pyip.inputDate(f"Date of next {race_distance} race as mm/dd/yyyy: \n")
     validated_next_race = validate_race_date(next_race)
 
@@ -50,7 +51,7 @@ def new_client_data():
         age,
         race_distance,
         str(current_pb),
-        str(goal_time),
+        str(validated_goal_time),
         str(validated_next_race),
     ]
     return client_data
@@ -78,31 +79,45 @@ def validate_times(distance):
         print("The max time for a 5km race is 01:59")
         hours = pyip.inputInt("hh: \n", max=1)
         minutes = pyip.inputInt("mm: \n", max=59)
-        current_pb = time(hours, minutes)
-        return current_pb
+        race_time = time(hours, minutes)
+        return race_time
     elif distance == "10km":
         print("The max time for a 10km race is 02:59")
         hours = pyip.inputInt("hh: \n", max=2)
         minutes = pyip.inputInt("mm: \n", max=59)
-        current_pb = time(hours, minutes)
-        return current_pb
+        race_time = time(hours, minutes)
+        return race_time
     elif distance == "Half-Marathon":
         print("The max time for a Half-Marathon race is 03:59")
         hours = pyip.inputInt("hh: \n", max=3)
         minutes = pyip.inputInt("mm: \n", max=59)
-        current_pb = time(hours, minutes)
-        return current_pb
+        race_time = time(hours, minutes)
+        return race_time
     elif distance == "Marathon":
         print("The max time for a Marathon race is 07:59")
         hours = pyip.inputInt("hh: \n", max=7)
         minutes = pyip.inputInt("mm: \n", max=59)
-        current_pb = time(hours, minutes)
-        return current_pb
+        race_time = time(hours, minutes)
+        return race_time
+
+
+def validate_goal_time(time, distance):
+    """
+    Ensures user cannot input a time of 00:00 for the race goal time
+    """
+    valid_goal_time = str(time)
+    while True:
+        if valid_goal_time == "00:00:00":
+            print("Please enter a valid goal time")
+            valid_goal_time = validate_times(distance)
+        else:
+            return valid_goal_time
 
 
 def validate_race_date(date):
     """
-    Makes sure that the date entered by the user for the client's next race is in the future
+    Makes sure that the date entered by the user for the client's next race
+    is in the future and before the limit of 12/31/2030
     """
     date_limit = date.fromisoformat("2031-01-01")
 
