@@ -32,7 +32,7 @@ def new_client_data():
     ).title()
     client_email = pyip.inputEmail("Email address: \n")
     validated_email = validate_email(client_email)
-    age = pyip.inputInt("Age: \n", min=18)
+    age = pyip.inputInt("Age: \n", min=18, max=100)
     print("Goal distance: \n")
     distance = pyip.inputMenu(
         ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
@@ -158,7 +158,7 @@ def edit_client_data(data):
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
     elif edit_actions == "Age":
-        new_age = pyip.inputInt("Update age: \n", min=18)
+        new_age = pyip.inputInt("Update age: \n", min=18, max=100)
         running_worksheet.update_cell((data + 1), 3, new_age)
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
