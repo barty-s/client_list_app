@@ -60,7 +60,15 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Testing
 
+### Code Validation
+
 - CI Python Linter https://pep8ci.herokuapp.com/
+
+### Test Cases (user based with screenshots)
+
+### Fixed Bugs
+
+- Next race date validation - originally I had an if/else statement and that only checked once if the user had input a correct date, that is the user could input an invalid date, be prompted to input a correct date, then input an invalid date again, and that would be accepted. So I changed it for a while loop to keep asking until the date fits within the limits.
 
 ## Deployment
 
