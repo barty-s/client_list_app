@@ -77,17 +77,22 @@ def validate_race_date(date):
     """
     Makes sure that the date entered by the user for the client's next race is in the future
     """
-    if today >= date:
-        print("Race date must be in the future! Please try again...")
-        next_race = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
-        return next_race
-    else:
-        return date
+    date_limit = date.fromisoformat("2031-01-01")
+
+    while True:
+        if today >= date:
+            print("Race date must be in the future! Please try again...")
+            date = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
+        elif date >= date_limit:
+            print("The race date can't be later than 12/31/2030")
+            date = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
+        else:
+            return date
 
 
 def calculate_days_until_next_race(data):
     """
-    Calculates a countdown for how many days left until the client's race day
+    Calculates a countdown for how many days are left until the client's race day
     """
     next_race = data[5]
     next_race_date = date.fromisoformat(next_race)
