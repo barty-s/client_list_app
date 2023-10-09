@@ -2,7 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 import sys
-from datetime import date
+from datetime import date, time
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -28,34 +28,30 @@ def new_client_data():
     print("Let's add a new client\n")
 
     name = pyip.inputRegex(
-        r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Client's Full Name: \n"
+        r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Client's First and Last Name: \n"
     ).title()
     client_email = pyip.inputEmail("Email address: \n")
     validated_email = validate_email(client_email)
     age = pyip.inputInt("Age: \n", min=18, max=100)
     print("Goal distance: \n")
-    distance = pyip.inputMenu(
+    race_distance = pyip.inputMenu(
         ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
     )
-    current_pb = str(
-        pyip.inputTime(f"Current PB for {distance} to nearest minute as hh:mm : \n")
-    )
-    next_race = pyip.inputDate(f"Date of next {distance} race as mm/dd/yyyy: \n")
+    print(f"Current PB for {race_distance} to nearest minute as hh:mm :")
+    current_pb = validate_times(race_distance)
+    print(f"Goal time for next {race_distance} race to nearest minute as hh:mm :")
+    goal_time = validate_times(race_distance)
+    next_race = pyip.inputDate(f"Date of next {race_distance} race as mm/dd/yyyy: \n")
     validated_next_race = validate_race_date(next_race)
-    goal_time = str(
-        pyip.inputTime(
-            f"Goal time for next {distance} race to nearest minute as hh:mm : \n"
-        )
-    )
 
     client_data = [
         name,
         validated_email,
         age,
-        distance,
-        current_pb,
+        race_distance,
+        str(current_pb),
+        str(goal_time),
         str(validated_next_race),
-        goal_time,
     ]
     return client_data
 
@@ -71,6 +67,37 @@ def validate_email(email):
         client_list_menu()
     else:
         return email
+
+
+def validate_times(distance):
+    """
+    Depending on the distance of the client's race, asks the user
+    input the client's personal best and goal times, with max time limits on each race distance
+    """
+    if distance == "5km":
+        print("The max time for a 5km race is 01:59")
+        hours = pyip.inputInt("hh: \n", max=1)
+        minutes = pyip.inputInt("mm: \n", max=59)
+        current_pb = time(hours, minutes)
+        return current_pb
+    elif distance == "10km":
+        print("The max time for a 10km race is 02:59")
+        hours = pyip.inputInt("hh: \n", max=2)
+        minutes = pyip.inputInt("mm: \n", max=59)
+        current_pb = time(hours, minutes)
+        return current_pb
+    elif distance == "Half-Marathon":
+        print("The max time for a Half-Marathon race is 03:59")
+        hours = pyip.inputInt("hh: \n", max=3)
+        minutes = pyip.inputInt("mm: \n", max=59)
+        current_pb = time(hours, minutes)
+        return current_pb
+    elif distance == "Marathon":
+        print("The max time for a Marathon race is 07:59")
+        hours = pyip.inputInt("hh: \n", max=7)
+        minutes = pyip.inputInt("mm: \n", max=59)
+        current_pb = time(hours, minutes)
+        return current_pb
 
 
 def validate_race_date(date):
@@ -94,7 +121,7 @@ def calculate_days_until_next_race(data):
     """
     Calculates a countdown for how many days are left until the client's race day
     """
-    next_race = data[5]
+    next_race = data[6]
     next_race_date = date.fromisoformat(next_race)
     days_til_race = abs(next_race_date - today)
     data.append(days_til_race.days)
