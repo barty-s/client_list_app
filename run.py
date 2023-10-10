@@ -43,7 +43,7 @@ def new_client_data():
     current_pb = validate_times(race_distance)
     print(f"Goal time for next {race_distance} race to nearest minute as hh:mm :")
     goal_time = validate_times(race_distance)
-    validated_goal_time = validate_goal_time(goal_time, race_distance)
+
     next_race = pyip.inputDate(f"Date of next {race_distance} race as mm/dd/yyyy: \n")
     validated_next_race = validate_race_date(next_race)
 
@@ -53,7 +53,7 @@ def new_client_data():
         age,
         race_distance,
         str(current_pb),
-        str(validated_goal_time),
+        str(goal_time),
         str(validated_next_race),
     ]
     return client_data
@@ -73,46 +73,44 @@ def validate_email(email):
 
 def validate_times(distance):
     """
-    Depending on the distance of the client's race, asks the user
-    input the client's personal best and goal times, with max time limits on each race distance
+    Depending on the distance of the client's race, asks the user to
+    input the client's personal best and goal times.
+    There are min and max time limits on each race distance distance using
+    the world record times as min values and standard race limits as max values.
     """
     if distance == "5km":
         print("The max time for a 5km race is 01:59")
         hours = pyip.inputInt("hh: \n", max=1)
-        minutes = pyip.inputInt("mm: \n", max=59)
+        if hours == 0:
+            minutes = pyip.inputInt("mm: \n", min=12, max=59)
+        else:
+            minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
     elif distance == "10km":
         print("The max time for a 10km race is 02:59")
         hours = pyip.inputInt("hh: \n", max=2)
-        minutes = pyip.inputInt("mm: \n", max=59)
+        if hours == 0:
+            minutes = pyip.inputInt("mm: \n", min=26, max=59)
+        else:
+            minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
     elif distance == "Half-Marathon":
         print("The max time for a Half-Marathon race is 03:59")
         hours = pyip.inputInt("hh: \n", max=3)
-        minutes = pyip.inputInt("mm: \n", max=59)
+        if hours == 0:
+            minutes = pyip.inputInt("mm: \n", min=57, max=59)
+        else:
+            minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
     elif distance == "Marathon":
         print("The max time for a Marathon race is 07:59")
-        hours = pyip.inputInt("hh: \n", max=7)
+        hours = pyip.inputInt("hh: \n", min=2, max=7)
         minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
-
-
-def validate_goal_time(time, distance):
-    """
-    Ensures user cannot input a time of 00:00 for the race goal time
-    """
-    valid_goal_time = str(time)
-    while True:
-        if valid_goal_time == "00:00:00":
-            print("Please enter a valid goal time")
-            valid_goal_time = validate_times(distance)
-        else:
-            return valid_goal_time
 
 
 def validate_race_date(date):
@@ -239,10 +237,9 @@ def edit_client_data(data):
         new_pb = validate_times(new_goal_distance)
         print(f"Enter the client's goal time for {new_goal_distance}")
         new_goal_time = validate_times(new_goal_distance)
-        validated_new_goal_time = validate_goal_time(new_goal_time, new_goal_distance)
         running_worksheet.update_cell((data + 1), 4, new_goal_distance)
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
-        running_worksheet.update_cell((data + 1), 6, str(validated_new_goal_time))
+        running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
         print("Client successfully updated \n")
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
@@ -256,8 +253,7 @@ def edit_client_data(data):
     elif edit_actions == "Goal Time":
         print(f"Enter the client's updated goal time for {goal_distance}")
         new_goal_time = validate_times(goal_distance)
-        validated_new_goal_time = validate_goal_time(new_goal_time, goal_distance)
-        running_worksheet.update_cell((data + 1), 6, str(validated_new_goal_time))
+        running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
         print("Client successfully updated \n")
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
