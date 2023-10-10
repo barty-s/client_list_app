@@ -115,3 +115,4 @@ As demonstated in the workflow image above, this app has 5 main features:
 - https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/ - For explanation of googlesheets methods
 - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html -datetime and date countdown explanation
 - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python - for help with date validation
+- https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python - for explanation on OS and clear screen ()

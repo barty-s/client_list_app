@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 import sys
+import os
 from datetime import date, time
 
 SCOPE = [
@@ -25,6 +26,7 @@ def new_client_data():
     """
     User adds data about their new client
     """
+    os.system("cls" if os.name == "nt" else "clear")
     print("Let's add a new client\n")
 
     name = pyip.inputRegex(
@@ -162,6 +164,7 @@ def search_client_email():
     """
     Searches for client using their email address
     """
+    os.system("cls" if os.name == "nt" else "clear")
     try:
         client_email = pyip.inputEmail("Search by client's email address: \n")
         email_list = running_worksheet.col_values(2)
@@ -183,6 +186,7 @@ def edit_client_data(data):
     Displays the client's data retreived using their email address.
     Then offers the user options to edit the client's data.
     """
+    os.system("cls" if os.name == "nt" else "clear")
     client_data = display_client_data(data)
     view_client_data(client_data)
     goal_distance = str(client_data[3])
@@ -268,6 +272,7 @@ def edit_client_data(data):
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
     elif edit_actions == "Return to Main Menu":
+        os.system("cls" if os.name == "nt" else "clear")
         client_list_menu()
 
 
@@ -276,8 +281,8 @@ def delete_client_data(data):
     Displays a client's data. Gives option to delete the client's data.
     If answer is yes, deletes the client's data from the googlesheet database.
     """
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(data)
-    # display_client_data(data)
     delete_query = pyip.inputYesNo(
         "Are you sure you want to delete this client? - enter y/n\n"
     )
@@ -353,11 +358,10 @@ def client_list_menu():
             print("\n")
             client_list_menu()
     elif actions == "Exit":
+        os.system("cls" if os.name == "nt" else "clear")
+        print("\n")
         print("See you next time! \n")
         sys.exit()
-
-
-# def clear_screen(): os.system("cls")
 
 
 def main():
