@@ -140,8 +140,6 @@ def calculate_days_until_next_race(data):
     next_race_date = date.fromisoformat(next_race)
     days_til_race = abs(next_race_date - today)
     return days_til_race.days
-    # data.append(days_til_race.days)
-    # return data
 
 
 def append_days_til_race(data, days):
@@ -195,10 +193,11 @@ def edit_client_data(data):
             "Name",
             "Email",
             "Age",
-            "Goal distance",
+            "Goal Distance",
             "Current PB",
-            "Goal time",
-            "Next race date",
+            "Goal Time",
+            "Next Race Date",
+            "Return to Main menu",
         ],
         numbered=True,
     )
@@ -221,7 +220,7 @@ def edit_client_data(data):
         running_worksheet.update_cell((data + 1), 3, new_age)
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
-    elif edit_actions == "Goal distance":
+    elif edit_actions == "Goal Distance":
         print(
             "You will need to update the current PB for this distance and the goal time too \n"
         )
@@ -245,14 +244,14 @@ def edit_client_data(data):
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
-    elif edit_actions == "Goal time":
+    elif edit_actions == "Goal Time":
         print(f"Enter the cliet's updated goal time for {goal_distance}")
         new_goal_time = validate_times(goal_distance)
         validated_new_goal_time = validate_goal_time(new_goal_time, goal_distance)
         running_worksheet.update_cell((data + 1), 6, str(validated_new_goal_time))
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
-    elif edit_actions == "Next race date":
+    elif edit_actions == "Next Race Date":
         new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
         validated_new_next_race_date = validate_race_date(new_next_race_date)
         running_worksheet.update_cell((data + 1), 7, str(validated_new_next_race_date))
@@ -261,6 +260,8 @@ def edit_client_data(data):
         running_worksheet.update_cell((data + 1), 8, str(update_client_days))
         print("Client successfully updated")
         print(running_worksheet.row_values((data + 1)))
+    elif edit_actions == "Return to Main Menu":
+        client_list_menu()
 
 
 def delete_client_data(data):
@@ -318,7 +319,6 @@ def client_list_menu():
         searched_client_index = search_client_email()
         if searched_client_index:
             edit_client_data(searched_client_index)
-            print("\n")
             client_list_menu()
         else:
             print("\n")
