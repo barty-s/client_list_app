@@ -63,8 +63,7 @@ def validate_email(email):
     """
     email_list = running_worksheet.col_values(2)
     if email in email_list:
-        print("A client already exists with this email")
-        print("\n")
+        print("A client already exists with this email \n")
         client_list_menu()
     else:
         return email
@@ -175,8 +174,8 @@ def search_client_email():
 
 def display_client_data(data):
     """Displays the client data retreived using the client's email address"""
-    print(running_worksheet.row_values((data + 1)))
-    return running_worksheet.row_values((data + 1))
+    client_data = running_worksheet.row_values((data + 1))
+    return client_data
 
 
 def edit_client_data(data):
@@ -185,6 +184,7 @@ def edit_client_data(data):
     Then offers the user options to edit the client's data.
     """
     client_data = display_client_data(data)
+    view_client_data(client_data)
     goal_distance = str(client_data[3])
     print("\n")
     print("What would you like to edit?\n")
@@ -197,7 +197,7 @@ def edit_client_data(data):
             "Current PB",
             "Goal Time",
             "Next Race Date",
-            "Return to Main menu",
+            "Return to Main Menu",
         ],
         numbered=True,
     )
@@ -207,19 +207,22 @@ def edit_client_data(data):
             r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update client's Full Name: \n"
         ).title()
         running_worksheet.update_cell((data + 1), 1, new_name)
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Email":
         new_email = pyip.inputEmail("Update email address: \n")
         validated_new_email = validate_email(new_email)
         running_worksheet.update_cell((data + 1), 2, validated_new_email)
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Age":
         new_age = pyip.inputInt("Update age: \n", min=18, max=100)
         running_worksheet.update_cell((data + 1), 3, new_age)
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Goal Distance":
         print(
             "You will need to update the current PB for this distance and the goal time too \n"
@@ -236,21 +239,24 @@ def edit_client_data(data):
         running_worksheet.update_cell((data + 1), 4, new_goal_distance)
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
         running_worksheet.update_cell((data + 1), 6, str(validated_new_goal_time))
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Current PB":
         print(f"Enter the client's updated PB for {goal_distance}")
         new_pb = validate_times(goal_distance)
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Goal Time":
-        print(f"Enter the cliet's updated goal time for {goal_distance}")
+        print(f"Enter the client's updated goal time for {goal_distance}")
         new_goal_time = validate_times(goal_distance)
         validated_new_goal_time = validate_goal_time(new_goal_time, goal_distance)
         running_worksheet.update_cell((data + 1), 6, str(validated_new_goal_time))
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Next Race Date":
         new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
         validated_new_next_race_date = validate_race_date(new_next_race_date)
@@ -258,8 +264,9 @@ def edit_client_data(data):
         updated_client = running_worksheet.row_values((data + 1))
         update_client_days = calculate_days_until_next_race(updated_client)
         running_worksheet.update_cell((data + 1), 8, str(update_client_days))
-        print("Client successfully updated")
-        print(running_worksheet.row_values((data + 1)))
+        print("Client successfully updated \n")
+        updated_client = running_worksheet.row_values((data + 1))
+        view_client_data(updated_client)
     elif edit_actions == "Return to Main Menu":
         client_list_menu()
 
@@ -269,16 +276,17 @@ def delete_client_data(data):
     Displays a client's data. Gives option to delete the client's data.
     If answer is yes, deletes the client's data from the googlesheet database.
     """
-    display_client_data(data)
+    view_client_data(data)
+    # display_client_data(data)
     delete_query = pyip.inputYesNo(
         "Are you sure you want to delete this client? - enter y/n\n"
     )
 
     if delete_query == "yes":
         running_worksheet.delete_rows((data + 1))
-        print("Client successfully deleted")
+        print("Client successfully deleted \n")
     else:
-        print("Client data not deleted")
+        print("Client data not deleted \n")
 
 
 def view_client_data(data):
@@ -313,13 +321,14 @@ def client_list_menu():
         client_appended_with_days = append_days_til_race(new_client, days_countdown)
         add_new_client_to_worksheet(client_appended_with_days)
         view_client_data(new_client)
-        # print(new_client)
         print("\n")
         client_list_menu()
     elif actions == "Display a client":
         searched_client_index = search_client_email()
         if searched_client_index:
-            display_client_data(searched_client_index)
+            client_data = display_client_data(searched_client_index)
+            print("\n")
+            view_client_data(client_data)
             print("\n")
             client_list_menu()
         else:
@@ -328,6 +337,7 @@ def client_list_menu():
     elif actions == "Edit a client":
         searched_client_index = search_client_email()
         if searched_client_index:
+            print("\n")
             edit_client_data(searched_client_index)
             client_list_menu()
         else:
@@ -343,7 +353,7 @@ def client_list_menu():
             print("\n")
             client_list_menu()
     elif actions == "Exit":
-        print("See you next time!")
+        print("See you next time! \n")
         sys.exit()
 
 
