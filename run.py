@@ -281,6 +281,15 @@ def delete_client_data(data):
         print("Client data not deleted")
 
 
+def view_client_data(data):
+    """
+    Displays client data in an easily readable format
+    """
+    print(
+        f"CLIENT DATA\nName: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\n"
+    )
+
+
 def client_list_menu():
     """
     Displays a list of actions for the user to choose from i.e add, display, delete client or exit program.
@@ -303,7 +312,8 @@ def client_list_menu():
         days_countdown = calculate_days_until_next_race(new_client)
         client_appended_with_days = append_days_til_race(new_client, days_countdown)
         add_new_client_to_worksheet(client_appended_with_days)
-        print(new_client)
+        view_client_data(new_client)
+        # print(new_client)
         print("\n")
         client_list_menu()
     elif actions == "Display a client":
