@@ -69,6 +69,8 @@ As demonstated in the workflow image above, this app has 5 main features:
 ### Fixed Bugs
 
 - Next race date validation - originally I had an if/else statement and that only checked once if the user had input a correct date, that is the user could input an invalid date, be prompted to input a correct date, then input an invalid date again, and that would be accepted. So I changed it for a while loop to keep asking until the date fits within the limits.
+- Edit race date - to ensure the countdown days til next race was also updated, needed a new function to separate the countdown and the append actions.
+- Enforce a minimum on the PB and Goal times - (PB, world record stats), (goal times, 1min less than world record stats), avoids user being able to input 00:01 for 5km/10km which wouldn't make sense.
 
 ## Deployment
 
