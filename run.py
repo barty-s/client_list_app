@@ -173,10 +173,13 @@ def search_client_email():
         print("Client does not exist")
 
 
-def display_client_data(data):
-    """Displays the client data retreived using the client's email address"""
+def get_client_data(data):
+    """Retreives client's data using their email address and updates the days til race countdown"""
     client_data = running_worksheet.row_values((data + 1))
-    return client_data
+    updated_days = calculate_days_until_next_race(client_data)
+    running_worksheet.update_cell((data + 1), 8, str(updated_days))
+    updated_client = running_worksheet.row_values((data + 1))
+    return updated_client
 
 
 def edit_client_data(data):
@@ -185,7 +188,7 @@ def edit_client_data(data):
     Then offers the user options to edit the client's data.
     """
     os.system("cls" if os.name == "nt" else "clear")
-    client_data = display_client_data(data)
+    client_data = get_client_data(data)
     view_client_data(client_data)
     goal_distance = str(client_data[3])
     print("\n")
@@ -308,7 +311,7 @@ def client_list_menu():
     actions = pyip.inputMenu(
         [
             "Add a client",
-            "Display a client",
+            "View a client",
             "Edit a client",
             "Delete a client",
             "Exit",
@@ -324,10 +327,10 @@ def client_list_menu():
         view_client_data(new_client)
         print("\n")
         client_list_menu()
-    elif actions == "Display a client":
+    elif actions == "View a client":
         searched_client_index = search_client_email()
         if searched_client_index:
-            client_data = display_client_data(searched_client_index)
+            client_data = get_client_data(searched_client_index)
             print("\n")
             view_client_data(client_data)
             print("\n")
