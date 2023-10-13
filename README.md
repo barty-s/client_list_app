@@ -44,6 +44,7 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 - I would like to allow for clients with no previous running experience to be added to the client list and develop the automated calculations to accomodate this feature.
 - I would to create input and automated calculations options for other sports such as cycling, swimming, weight-lifting etc depending on the trainer's area of expertise and their clients' needs.
+- I would like to improve the pb and goal time inputs to include ss to make their pace times more accurate
 
 ## Technologies
 
@@ -116,3 +117,4 @@ As demonstated in the workflow image above, this app has 5 main features:
 - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html -datetime and date countdown explanation
 - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python - for help with date validation
 - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python - for explanation on OS and clear screen ()
+- https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python - for explanation on converting decimal time to mm:ss for the race pace calculations

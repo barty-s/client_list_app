@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 import sys
 import os
-from datetime import date, time
+from datetime import date, time, datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -143,9 +143,37 @@ def calculate_days_until_next_race(data):
 
 def append_days_til_race(data, days):
     """
-    Append the days until the next race calculation to the client's data
+    Appends the days until the next race calculation to the client's data
     """
     data.append(days)
+    return data
+
+
+def calculate_pb(data):
+    """
+    Calculates the client's pb running pace
+    """
+    distance = data[3]
+    pb_time = datetime.strptime(data[4], "%H:%M:%S")  # convert from str to time...how?
+    total_minutes = (pb_time.hour * 60) + pb_time.minute
+    if distance == "5km":
+        pb_pace = total_minutes / 5
+    elif distance == "10km":
+        pb_pace = total_minutes / 10
+    elif distance == "Half-Marathon":
+        pb_pace = total_minutes / 21.0975
+    elif distance == "Marathon":
+        pb_pace = total_minutes / 42.195
+    seconds = pb_pace * 60
+    m, s = divmod(seconds, 60)
+    return "%02d:%02d" % (m, s)
+
+
+def append_race_pace(data, pace):
+    """
+    Appends the client's running pace to their row of data
+    """
+    data.append(pace)
     return data
 
 
@@ -323,7 +351,9 @@ def client_list_menu():
         new_client = new_client_data()
         days_countdown = calculate_days_until_next_race(new_client)
         client_appended_with_days = append_days_til_race(new_client, days_countdown)
-        add_new_client_to_worksheet(client_appended_with_days)
+        client_pb = calculate_pb(new_client)
+        client_appended_pb = append_race_pace(client_appended_with_days, client_pb)
+        add_new_client_to_worksheet(client_appended_pb)
         view_client_data(new_client)
         print("\n")
         client_list_menu()
