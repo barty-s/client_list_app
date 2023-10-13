@@ -154,7 +154,7 @@ def calculate_pb(data):
     Calculates the client's pb running pace
     """
     distance = data[3]
-    pb_time = datetime.strptime(data[4], "%H:%M:%S")  # convert from str to time...how?
+    pb_time = datetime.strptime(data[4], "%H:%M:%S")
     total_minutes = (pb_time.hour * 60) + pb_time.minute
     if distance == "5km":
         pb_pace = total_minutes / 5
@@ -165,6 +165,26 @@ def calculate_pb(data):
     elif distance == "Marathon":
         pb_pace = total_minutes / 42.195
     seconds = pb_pace * 60
+    m, s = divmod(seconds, 60)
+    return "%02d:%02d" % (m, s)
+
+
+def calculate_goal_pace(data):
+    """
+    Calculates the client's goal race pace
+    """
+    distance = data[3]
+    goal_time = datetime.strptime(data[5], "%H:%M:%S")
+    total_minutes = (goal_time.hour * 60) + goal_time.minute
+    if distance == "5km":
+        goal_pace = total_minutes / 5
+    elif distance == "10km":
+        goal_pace = total_minutes / 10
+    elif distance == "Half-Marathon":
+        goal_pace = total_minutes / 21.0975
+    elif distance == "Marathon":
+        goal_pace = total_minutes / 42.195
+    seconds = goal_pace * 60
     m, s = divmod(seconds, 60)
     return "%02d:%02d" % (m, s)
 
@@ -202,7 +222,9 @@ def search_client_email():
 
 
 def get_client_data(data):
-    """Retreives client's data using their email address and updates the days til race countdown"""
+    """
+    Retreives client's data using their email address and updates the days til race countdown
+    """
     client_data = running_worksheet.row_values((data + 1))
     updated_days = calculate_days_until_next_race(client_data)
     running_worksheet.update_cell((data + 1), 8, str(updated_days))
@@ -326,7 +348,7 @@ def view_client_data(data):
     Displays client data in an easily readable format
     """
     print(
-        f"CLIENT DATA\nName: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\n"
+        f"CLIENT DATA\nName: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\nCurrent Pace: {data[8]}mins/km\nGoal Pace: {data[9]}mins/km"
     )
 
 
@@ -353,7 +375,11 @@ def client_list_menu():
         client_appended_with_days = append_days_til_race(new_client, days_countdown)
         client_pb = calculate_pb(new_client)
         client_appended_pb = append_race_pace(client_appended_with_days, client_pb)
-        add_new_client_to_worksheet(client_appended_pb)
+        client_goal_pace = calculate_goal_pace(new_client)
+        client_appended_race_pace = append_race_pace(
+            client_appended_pb, client_goal_pace
+        )
+        add_new_client_to_worksheet(client_appended_race_pace)
         view_client_data(new_client)
         print("\n")
         client_list_menu()

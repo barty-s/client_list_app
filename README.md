@@ -118,3 +118,5 @@ As demonstated in the workflow image above, this app has 5 main features:
 - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python - for help with date validation
 - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python - for explanation on OS and clear screen ()
 - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python - for explanation on converting decimal time to mm:ss for the race pace calculations
+- https://www.datacamp.com/tutorial/converting-strings-datetime-objects - for explanation on converting strings to datetime objects 
+ 
