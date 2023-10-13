@@ -10,7 +10,7 @@ The user, i.e. the trainer, can add new clients, view clients, edit clients' inf
 
 ## User Stories
 
-1. As a user, a running trainer, I want to be able to add my client's data and have the program give me outputs on how many days until the client's next race.
+1. As a user, a running trainer, I want to be able to add my client's data and have the program give me outputs on how many days until the client's next race and what their current and goal race paces are.
 2. As a user, I want to be able to view my client's information on searching the spreadsheet with their email address.
 3. As a user, I want to be able to edit any of the client's data.
 4. As a user, I want to be able to delete a client from the client list if I need to.
@@ -30,11 +30,11 @@ As demonstated in the workflow image above, this app has 5 main features:
 - the client's current Personal Best (PB) time for the race distance
 - the date of the client's next race, in mm/dd/yyyy format and which must be a future date
 - the time the client wants to complete this race in
-  The data will be displayed once all the input sections have been correctly completed, and the user will be shown how many days there are until the client's next race.
+  The data will be displayed once all the input sections have been correctly completed, and the user will be shown how many days there are until the client's next race as well as the client's current race pace and their goal race pace.
 
-2. Display a client - the user can search for an existing client and their data will be displayed. Originally, the client's last name was going to be used to search but during the development of the app I was advised to use the client's email, as that is a unique datum and will avoid issues if there exists multiple clients with the same last name.
+2. Display a client - the user can search for an existing client and their data will be displayed. Originally, the client's last name was going to be used to search but during the development of the app I was advised to use the client's email, as that is a unique datum and will avoid data retrieval issues if multiple clients with the same last name exist. Before the client is displayed, the up-to-date number of days until the race will be calculated and the client's data will be updated.
 
-3. Edit a client - the user can search for a client using their email address. If the client exists the user will be given the option to edit any of the inputs. If the user wants to edit the race distance, they will be asked to edit the client's PB and goal time too
+3. Edit a client - the user can search for a client using their email address. If the client exists the user will be given the option to edit any of the inputs. If the user wants to edit the race distance, they will be asked to edit the client's PB and goal time too. The current race pace and goal race pace will be updated accordingly. If the race date is changed, the new number of days until the race will be calculated and displayed.
 
 4. Delete a client - the user can search for a client using their email address. The client's data will be displayed and the user will be asked if they are sure they want to delete the information and choose Y or N.
 
