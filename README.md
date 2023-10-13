@@ -48,16 +48,29 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Technologies
 
-- PyInputPlus module - for additional input validation
-- google oauth - to access credentials in the creds.json file
-- gspread - to link the googlesheets spreadsheet to the app actions
-- sys module - to access the interpreter
-- datetime - to format date and time inputs
-- tabulate - to format data into tables
+### Lanugages
+
+- Python was solely used to create this app
+
+### Programs
+
+- Git - version control
 - VS Code - as the program editor
-- Git - for terminal actions
 - GitHub Desktop - to commit and push changes in the app's code
+- GitHub - to store the files in a repository and to link to Heroku
 - Heroku - to host the app in a mock terminal
+- Code Institutes Pep8 Checker - to test and validate the python code
+- Lucid Chart - to create a flow chart of the actions available in the app
+- Heroku - to deploy the app
+
+### Modules
+
+- PyInputPlus module - For additional input validation. I came across this module while I was researching how to validate email inputs. It has many built-in features that add automatic validation to emails, integers, strings, dates, times - all of which I made use of in this app.
+- gspread - A Python API for Google Sheets which is used to access and update data stored in the 'running' sheet in the spread sheet 'client_list'.
+- google.oauth2.service_account - To import the Credentials Class which then uses the creds.json file.
+- sys module - To access the interpreter
+- datetime - To format date and time inputs, and to get the current date which is used in the countdown function.
+- os - To clear the terminal screen after the user selects an action. This allows for better UX by displaying the data relevant to the action and avoid excessive scrolling.
 
 ## Testing
 
