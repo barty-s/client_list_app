@@ -106,17 +106,15 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Credits
 
-- https://www.lucidchart.com - to create the workflow image
+- To create the workflow image - https://www.lucidchart.com
 - CI run-through project - code to access APIs and Google Sheets
-- https://www.geeksforgeeks.org/implementing-a-contacts-directory-in-python/ - for contact book structure explanation
-- https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response - for info on input validation
-- https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p, https://stackoverflow.com/questions/66494597/pyinputplus-allowregexes-keyword-allows-any-input - PyInputPlus info and explanations
-- https://www.youtube.com/watch?v=-2PrvZ420QM&t=405s - Serialization for datetime (JSON) - (not used in the end)
-- https://www.programiz.com/python-programming/methods/list/index - For explanation of index() method -
-- https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/ - For explanation of googlesheets methods
-- https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html -datetime and date countdown explanation
-- https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python - for help with date validation
-- https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python - for explanation on OS and clear screen ()
-- https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python - for explanation on converting decimal time to mm:ss for the race pace calculations
-- https://www.datacamp.com/tutorial/converting-strings-datetime-objects - for explanation on converting strings to datetime objects 
- 
+- For an explanation of the structure of a contact book - https://www.geeksforgeeks.org/implementing-a-contacts-directory-in-python/
+- For info on input validation - https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response
+- PyInputPlus info and explanations - https://pyinputplus.readthedocs.io/en/latest/ , https://dev.to/dominickoech/input-validation-using-pyinputplus-module-in-python-455p, https://stackoverflow.com/questions/66494597/pyinputplus-allowregexes-keyword-allows-any-input
+- For an explanation of index() method - https://www.programiz.com/python-programming/methods/list/index
+- For an explanation of googlesheets methods - https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/
+- For an explanation of datetime and date countdown - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html
+- For help with date validation - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python
+- For explanation on OS and clear screen () - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python
+- For explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
+- For explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
