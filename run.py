@@ -4,6 +4,7 @@ import pyinputplus as pyip
 import sys
 import os
 from datetime import date, time, datetime
+from termcolor import colored
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -27,23 +28,28 @@ def new_client_data():
     User adds data about their new client
     """
     os.system("cls" if os.name == "nt" else "clear")
-    print("Let's add a new client\n")
+    print(colored("Let's add a new client\n", "green"))
 
     name = pyip.inputRegex(
         r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Client's First and Last Name: \n"
     ).title()
+    print("\n")
     client_email = pyip.inputEmail("Email address: \n")
     validated_email = validate_email(client_email)
+    print("\n")
     age = pyip.inputInt("Age: \n", min=18, max=100)
+    print("\n")
     print("Goal distance: \n")
     race_distance = pyip.inputMenu(
         ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
     )
+    print("\n")
     print(f"Current PB for {race_distance} to nearest minute as hh:mm :")
     current_pb = validate_times(race_distance)
+    print("\n")
     print(f"Goal time for next {race_distance} race to nearest minute as hh:mm :")
     goal_time = validate_times(race_distance)
-
+    print("\n")
     next_race = pyip.inputDate(f"Date of next {race_distance} race as mm/dd/yyyy: \n")
     validated_next_race = validate_race_date(next_race)
 
@@ -65,7 +71,7 @@ def validate_email(email):
     """
     email_list = running_worksheet.col_values(2)
     if email in email_list:
-        print("A client already exists with this email \n")
+        print(colored("A client already exists with this email \n", "red"))
         client_list_menu()
     else:
         return email
@@ -79,8 +85,8 @@ def validate_times(distance):
     the world record times as min values and standard race limits as max values.
     """
     if distance == "5km":
-        print("The max time for a 5km race is 01:59")
-        hours = pyip.inputInt("hh: \n", max=1)
+        print(colored("The max time for a 5km race is 00:59", "cyan"))
+        hours = pyip.inputInt("hh: \n", max=0)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=12, max=59)
         else:
@@ -88,7 +94,7 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     elif distance == "10km":
-        print("The max time for a 10km race is 02:59")
+        print(colored("The max time for a 10km race is 02:59", "cyan"))
         hours = pyip.inputInt("hh: \n", max=2)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=26, max=59)
@@ -97,7 +103,7 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     elif distance == "Half-Marathon":
-        print("The max time for a Half-Marathon race is 03:59")
+        print(colored("The max time for a Half-Marathon race is 03:59", "cyan"))
         hours = pyip.inputInt("hh: \n", max=3)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=57, max=59)
@@ -106,7 +112,7 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     elif distance == "Marathon":
-        print("The max time for a Marathon race is 07:59")
+        print(colored("The max time for a Marathon race is 07:59", "cyan"))
         hours = pyip.inputInt("hh: \n", min=2, max=7)
         minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
@@ -122,10 +128,10 @@ def validate_race_date(date):
 
     while True:
         if today >= date:
-            print("Race date must be in the future! Please try again...")
+            print(colored("Race date must be in the future! Please try again...", "red"))
             date = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
         elif date >= date_limit:
-            print("The race date can't be later than 12/31/2030")
+            print(colored("The race date can't be later than 12/31/2030", "red"))
             date = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
         else:
             return date
@@ -201,9 +207,9 @@ def add_new_client_to_worksheet(data):
     """
     Adds the new client's information to running client list spreadsheet
     """
-    print("Adding client to database...\n")
+    print(colored("Adding client to database...\n", "yellow"))
     running_worksheet.append_row(data)
-    print("Client successfully added\n")
+    print(colored("Client successfully added!\n", "green"))
 
 
 def search_client_email():
@@ -212,13 +218,13 @@ def search_client_email():
     """
     os.system("cls" if os.name == "nt" else "clear")
     try:
-        client_email = pyip.inputEmail("Search by client's email address: \n")
+        client_email = pyip.inputEmail(colored("Search by client's email address: \n", "blue"))
         email_list = running_worksheet.col_values(2)
         client_index = email_list.index(client_email)
         return client_index
 
     except ValueError:
-        print("Client does not exist")
+        print(colored("Client does not exist", "red"))
 
 
 def get_client_data(data):
@@ -262,26 +268,26 @@ def edit_client_data(data):
             r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update client's Full Name: \n"
         ).title()
         running_worksheet.update_cell((data + 1), 1, new_name)
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
     elif edit_actions == "Email":
         new_email = pyip.inputEmail("Update email address: \n")
         validated_new_email = validate_email(new_email)
         running_worksheet.update_cell((data + 1), 2, validated_new_email)
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
     elif edit_actions == "Age":
         new_age = pyip.inputInt("Update age: \n", min=18, max=100)
         running_worksheet.update_cell((data + 1), 3, new_age)
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
     elif edit_actions == "Goal Distance":
         print(
-            "You will need to update the current PB for this distance and the goal time too \n"
-        )
+            colored("You will need to update the current PB for this distance and the goal time too \n"
+        , "cyan"))
         print("New goal distance: \n")
         new_goal_distance = pyip.inputMenu(
             ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
@@ -293,7 +299,7 @@ def edit_client_data(data):
         running_worksheet.update_cell((data + 1), 4, new_goal_distance)
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
         running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
     elif edit_actions == "Current PB":
@@ -304,7 +310,7 @@ def edit_client_data(data):
         new_pb_pace = calculate_pb(updated_pb)
         running_worksheet.update_cell((data + 1), 9, str(new_pb_pace))
         updated_client = running_worksheet.row_values((data + 1))
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         view_client_data(updated_client)
     elif edit_actions == "Goal Time":
         print(f"Enter the client's updated goal time for {goal_distance}")
@@ -314,7 +320,7 @@ def edit_client_data(data):
         new_goal_pace = calculate_goal_pace(updated_goal_time)
         running_worksheet.update_cell((data + 1), 10, str(new_goal_pace))
         updated_client = running_worksheet.row_values((data + 1))
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         view_client_data(updated_client)
     elif edit_actions == "Next Race Date":
         new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
@@ -323,7 +329,7 @@ def edit_client_data(data):
         updated_client = running_worksheet.row_values((data + 1))
         update_client_days = calculate_days_until_next_race(updated_client)
         running_worksheet.update_cell((data + 1), 8, str(update_client_days))
-        print("Client successfully updated \n")
+        print(colored("Client successfully updated \n", "green"))
         updated_client = running_worksheet.row_values((data + 1))
         view_client_data(updated_client)
     elif edit_actions == "Return to Main Menu":
@@ -337,24 +343,27 @@ def delete_client_data(data):
     If answer is yes, deletes the client's data from the googlesheet database.
     """
     os.system("cls" if os.name == "nt" else "clear")
-    view_client_data(data)
+    client_data = get_client_data(data)
+    view_client_data(client_data)
+    print("\n")
     delete_query = pyip.inputYesNo(
-        "Are you sure you want to delete this client? - enter y/n\n"
-    )
+        colored("Are you sure you want to delete this client? - enter y/n\n", "magenta"
+        ))
 
     if delete_query == "yes":
         running_worksheet.delete_rows((data + 1))
-        print("Client successfully deleted \n")
+        print(colored("Client successfully deleted \n", "green"))
     else:
-        print("Client data not deleted \n")
+        print(colored("Client data not deleted \n", "yellow"))
 
 
 def view_client_data(data):
     """
     Displays client data in an easily readable format
     """
+    print(colored("CLIENT DATA\n", "green"))
     print(
-        f"CLIENT DATA\nName: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\nCurrent Pace: {data[8]} mins/km\nGoal Pace: {data[9]} mins/km"
+        f"Name: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\nCurrent Pace: {data[8]} mins/km\nGoal Pace: {data[9]} mins/km"
     )
 
 
@@ -363,7 +372,7 @@ def client_list_menu():
     Displays a list of actions for the user to choose from i.e add, display, delete client or exit program.
     The main menu is displayed again after each action is completed.
     """
-    print("What you like to do? Type a number from the list below:\n")
+    print(colored("What you like to do? Type a number from the list below:\n", "magenta"))
     actions = pyip.inputMenu(
         [
             "Add a client",
@@ -421,7 +430,7 @@ def client_list_menu():
     elif actions == "Exit":
         os.system("cls" if os.name == "nt" else "clear")
         print("\n")
-        print("See you next time! \n")
+        print(colored("See you next time! \n", "cyan"))
         sys.exit()
 
 
@@ -431,6 +440,6 @@ def main():
     """
     client_list_menu()
 
-
-print("Welcome to your Running Client List Data Automation\n")
+print("\n")
+print("Welcome to the Running Client List - Data Automation App\n")
 main()

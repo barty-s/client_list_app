@@ -55,7 +55,8 @@ As demonstated in the workflow image above, this app has 5 main features:
 ### Programs
 
 - Git - version control
-- VS Code - as the program editor
+- VSCode - as the program editor
+- Black - Python auto formatter installed in VSCode
 - GitHub Desktop - to commit and push changes in the app's code
 - GitHub - to store the files in a repository and to link to Heroku
 - Heroku - to host the app in a mock terminal
@@ -71,6 +72,7 @@ As demonstated in the workflow image above, this app has 5 main features:
 - sys module - To access the interpreter
 - datetime - To format date and time inputs, and to get the current date which is used in the countdown function.
 - os - To clear the terminal screen after the user selects an action. This allows for better UX by displaying the data relevant to the action and avoid excessive scrolling.
+- termcolor - To add color to various print statements to improve UX.
 
 ## Testing
 
@@ -79,6 +81,8 @@ As demonstated in the workflow image above, this app has 5 main features:
 - CI Python Linter https://pep8ci.herokuapp.com/
 
 ### Test Cases (user based with screenshots)
+
+1. Main Menu - the app opens with a welcome message and asks the user to choose an action from the list.
 
 ### Fixed Bugs
 
@@ -131,3 +135,4 @@ As demonstated in the workflow image above, this app has 5 main features:
 - For explanation on OS and clear screen () - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python
 - For explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
 - For explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
+- For an explanation on how to import and use termcolor - https://pypi.org/project/termcolor/
