@@ -301,7 +301,10 @@ def edit_client_data(data):
         new_pb = validate_times(goal_distance)
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
         print("Client successfully updated \n")
-        updated_client = running_worksheet.row_values((data + 1))
+        updated_pb = running_worksheet.row_values((data + 1))
+        new_pb_pace = calculate_pb(updated_pb)
+        running_worksheet.update_cell((data + 1), 9, str(new_pb_pace))
+        updated_client = running_worksheet.row_values
         view_client_data(updated_client)
     elif edit_actions == "Goal Time":
         print(f"Enter the client's updated goal time for {goal_distance}")
@@ -348,7 +351,7 @@ def view_client_data(data):
     Displays client data in an easily readable format
     """
     print(
-        f"CLIENT DATA\nName: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\nCurrent Pace: {data[8]}mins/km\nGoal Pace: {data[9]}mins/km"
+        f"CLIENT DATA\nName: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\nCurrent Pace: {data[8]} mins/km\nGoal Pace: {data[9]} mins/km"
     )
 
 
