@@ -82,9 +82,9 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ### Fixed Bugs
 
-- Next race date validation - originally I had an if/else statement and that only checked once if the user had input a correct date, that is the user could input an invalid date, be prompted to input a correct date, then input an invalid date again, and that would be accepted. So I changed it for a while loop to keep asking until the date fits within the limits.
-- Edit race date - to ensure the countdown days til next race was also updated, needed a new function to separate the countdown and the append actions.
-- Enforce a minimum on the PB and Goal times - (PB, world record stats), (goal times, 1min less than world record stats), avoids user being able to input 00:01 for 5km/10km which wouldn't make sense.
+- Next Race Date validation - Originally I had an if/else statement and that only checked once if the user had input a correct date, that is the user could first input an invalid date, be prompted to input a correct date, then input an invalid date again, and that would be accepted. So I changed it for a while loop to keep asking until the date fits within the limits.
+- Edit Race Date - to ensure the countdown days until the next race was also updated, I realised I needed a new function and to separate the update countdown and the append functions. This was useful as I was then able to use the update countdown function in the display client option - the countdown days will be accurate to the day it is viewed.
+- Enforce a minimum on the PB and Goal times - The user was able to input 00:01 for 5km/10km which doesn't make sense and produces strange race paces. So I decided to set a minimum/maximum limit for each race. The minimum time is the current world record for each race distance and the maximum time is the standard limit participants have to complete the race in. Normally, in organised races, there is a bus that follows the race pack and if there are people who are running too slowly, they are picked up by the bus so that the streets aren't blocked to other users for too long.
 
 ## Deployment
 
