@@ -69,10 +69,11 @@ As demonstated in the workflow image above, this app has 5 main features:
 - PyInputPlus module - For additional input validation. I came across this module while I was researching how to validate email inputs. It has many built-in features that add automatic validation to emails, integers, strings, dates, times - all of which I made use of in this app.
 - gspread - A Python API for Google Sheets which is used to access and update data stored in the 'running' sheet in the spread sheet 'client_list'.
 - google.oauth2.service_account - To import the Credentials Class which then uses the creds.json file.
-- sys module - To access the interpreter
+- sys module - To access the interpreter.
 - datetime - To format date and time inputs, and to get the current date which is used in the countdown function.
 - os - To clear the terminal screen after the user selects an action. This allows for better UX by displaying the data relevant to the action and avoid excessive scrolling.
 - termcolor - To add color to various print statements to improve UX.
+- time - To use the sleep() function so as to improve UX and slow down the speed of the messages being displayed.
 
 ## Testing
 
@@ -136,3 +137,4 @@ As demonstated in the workflow image above, this app has 5 main features:
 - For explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
 - For explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
 - For an explanation on how to import and use termcolor - https://pypi.org/project/termcolor/
+- For an explanation on the time.sleep() function - https://www.geeksforgeeks.org/how-to-add-time-delay-in-python/

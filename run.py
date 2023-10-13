@@ -5,6 +5,7 @@ import sys
 import os
 from datetime import date, time, datetime
 from termcolor import colored
+import time as t
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -209,6 +210,7 @@ def add_new_client_to_worksheet(data):
     """
     print(colored("Adding client to database...\n", "yellow"))
     running_worksheet.append_row(data)
+    t.sleep(1.5)
     print(colored("Client successfully added!\n", "green"))
 
 
