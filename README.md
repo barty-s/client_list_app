@@ -138,15 +138,31 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 25. Once the final input has been accepted the user will see a message that the client is being added to the database.
 26. As long as all the values are valid, the user will then see a message confirming the client has been added to the database.
-27. The client's data will be then be shown. It will include all the input values as well as the countdown of the number of days left until the client's race, their current running pace in minutes/km and their goal time race pace in minutes/km.
+27. A summary of the client's data will then be shown to the user. It will include all the input values, as well as the countdown of the number of days left until the client's race, their current running pace in minutes/km and their goal time race pace in minutes/km, which are calculated automatically by the program.
+28. The googlesheets client_list will be updated with this new client's data and the calculated countdown and race paces.
+29. The user will be shown the Main Menu again to either continue with the program or exit.
 
 #### Action 2 - View a client
 
+1. On selecting action 2, the screen will be cleared and the user will be prompted to input their client's email address.
+2. If the user inputs an invalid email, for example, missing the @ or ".", they will be warned of the error and prompted to input a valid email.
+3. If the user inputs a email that doesn't exist in the database, they will be warned and then the main menu will be displayed.
+4. When the user inputs a valid email that exists in the database, the client's information connected to that email will be displayed and the main menu will also be displayed.
+
 #### Action 3 - Edit a client
+
+1.
 
 #### Action 4 - Delete a client
 
+1. On selecting action 4, the user will be prompted to input the client's email.
+2. On inputting a valid email, the client's data will be displayed and the user will be asked if they are sure they want to delete the client.
+3. The user can type 'n', 'no', 'y', 'yes' in any combination of upper/lower case letters and all answers will be accepted. If the user types anything else they will be warned and then prompted to type 'y/n'.
+4. If the user chooses not to delete a client, they will be shown a message stating the client has not been deleted and the main menu will be displayed.
+
 #### Action 5 - Exit
+
+1. On selecting action 5, the user will signing-off message and the app will stop running.
 
 ### Bugs
 

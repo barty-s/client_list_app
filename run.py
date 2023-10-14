@@ -212,7 +212,7 @@ def add_new_client_to_worksheet(data):
     running_worksheet.append_row(data)
     t.sleep(1.5)
     print(colored("Client successfully added!\n", "green"))
-
+    t.sleep(1.5)
 
 def search_client_email():
     """
