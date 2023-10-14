@@ -214,6 +214,7 @@ def add_new_client_to_worksheet(data):
     print(colored("Client successfully added!\n", "green"))
     t.sleep(1.5)
 
+
 def search_client_email():
     """
     Searches for client using their email address
@@ -288,8 +289,7 @@ def edit_client_data(data):
         view_client_data(updated_client)
     elif edit_actions == "Goal Distance":
         print(
-            colored("You will need to update the current PB for this distance and the goal time too \n"
-        , "cyan"))
+            colored("You will need to update the current PB for this distance and the goal time too \n", "cyan"))
         print("New goal distance: \n")
         new_goal_distance = pyip.inputMenu(
             ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
@@ -348,9 +348,7 @@ def delete_client_data(data):
     client_data = get_client_data(data)
     view_client_data(client_data)
     print("\n")
-    delete_query = pyip.inputYesNo(
-        colored("Are you sure you want to delete this client? - enter y/n\n", "magenta"
-        ))
+    delete_query = pyip.inputYesNo(colored("Are you sure you want to delete this client? - enter y/n\n", "magenta"))
 
     if delete_query == "yes":
         running_worksheet.delete_rows((data + 1))
@@ -442,6 +440,8 @@ def main():
     """
     client_list_menu()
 
+
 print("\n")
 print("Welcome to the Running Client List - Data Automation App\n")
 main()
+
