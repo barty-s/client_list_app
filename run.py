@@ -113,8 +113,8 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     elif distance == "Marathon":
-        print(colored("The max time for a Marathon race is 07:59", "cyan"))
-        hours = pyip.inputInt("hh: \n", min=2, max=7)
+        print(colored("The max time for a Marathon race is 06:59", "cyan"))
+        hours = pyip.inputInt("hh: \n", min=2, max=6)
         minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time

@@ -81,7 +81,7 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 - CI Python Linter https://pep8ci.herokuapp.com/
 
-### Test Cases (user based with screenshots)
+### Test Cases
 
 #### Main Menu
 
@@ -91,6 +91,55 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 #### Action 1 - Add a client
 
+##### Name
+
+1. On selecting option one, the screen will be cleared and the user is prompted to type their client's First and Last names. The user must type two words only to match the specified pattern of "first + last" name.
+2. If the user types only one name, they will see a warning saying their input does not match the specified pattern.
+3. If the user types three names, they will be similarly warned and prompted.
+4. The user can type a mix of upper and lower cases and the output will be converted to a "First Last" pattern when all the client's information is displayed at the end.
+
+##### Email
+
+5. The user is next asked to input the client's email address. The user must include a @ symbol and a "." for the address to be valid.
+6. If the user inputs an email that already exists in the client list database (googlesheets), they will be warned and then the Main Menu will be displayed again.
+
+##### Age
+
+7. On entering a valid, unique email, the user will then prompted to input their client's age.
+8. The user cannot input any letters, only whole numbers are accepted. The user cannot input a number below 18 or above 100. They will be warned about their error and then prompted to input a valid, whole number age.
+
+##### Distance
+
+9. When the user has input a valid, they are next prompted to choose their client's goal distance that they are training for. The user can choose between 5km, 10km, Half-Marathon, Marathon.
+10. If the user inputs a value outside the range 1-4, they will be warned that their input is invalid and then prompted to input a valid number.
+11. The user can input a number or type out their choice in any combination of lower/uppercase text, and this will be accepted by the program.
+
+##### PB Time
+
+12. On selecting their client's race distance, the user is then prompted to input their client's personal best time (PB) for the distance they have just input.
+13. The user is shown a warning of the maximum time for the selected race distance. For example, a 5km race distance is limited to a 00:59 minute PB, as this is the typical cut off time for a 5km race.
+14. If the user inputs an integer above 0 for the "hh" input, they will be warned that their input must be 0 at a maximum, so as not to exceed the 00:59 limit. The user can input 0 or 00 and both will be accepted. And for number below 10, it is not necessary to prefix with "0" e.g "7" is valid as is "07".
+15. If the user inputs an integer below 12 for the "mm" input, they will be warned that their input must be 12 at a minimum as there is a minimum limit of 00:12 mins for a 5km race, which is the current world record.
+16. If the user selected 10km as the race distance, there will be a minimum limit of 00:26 minutes, the current world record time, and a maximum limit of 00:59, the standard limit for a 10km race.
+17. If the user selected Half-Marathon as the race distance, there will be a minimum limit of 00:57 minutes, the current world record time, and a maximum limit of 02:59, the standard limit for a half-marathon race.
+18. If the user selected Marathon as the race distance, there will be a minimum limit of 02:00 hours, the current world record time, and a maximum limit of 06:59, the standard limit for a marathon race.
+19. If the user inputs values outside the above-stated limits, they will be warned of either the maximum or minimum limit, and then prompted to input a valid value - as demonstrated with the 5km example images.
+
+##### Goal Time
+
+20. Once the user has input a valid PB time for the race distance, they will be prompted to input a goal time, that is the time their client hopes to complete the race in.
+21. The exact same minimum and maximum limits, and invalid input warnings, are put on the goal time as on the PB time, as outlined above.
+
+##### Date of next race
+
+22. The user is finally asked to input the date of their client's next race. The user must follow the format mm/dd/yyyy for the date to be accepted as valid.
+23. If the user inputs an invalid value for "mm", ie outside the range of 1-12, or for "dd", outside 1-31, they will be warned and prompted to input a valid date.
+24. If the date is in the past or beyond the limit of 12/31/2030, the user will be warned and prompted to input a valid date.
+
+25. Once the final input has been accepted the user will see a message that the client is being added to the database.
+26. As long as all the values are valid, the user will then see a message confirming the client has been added to the database.
+27. The client's data will be then be shown. It will include all the input values as well as the countdown of the number of days left until the client's race, their current running pace in minutes/km and their goal time race pace in minutes/km.
+
 #### Action 2 - View a client
 
 #### Action 3 - Edit a client
@@ -99,11 +148,17 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 #### Action 5 - Exit
 
-### Fixed Bugs
+### Bugs
+
+#### Fixed
 
 - Next Race Date validation - Originally I had an if/else statement and that only checked once if the user had input a correct date, that is the user could first input an invalid date, be prompted to input a correct date, then input an invalid date again, and that would be accepted. So I changed it for a while loop to keep asking until the date fits within the limits.
 - Edit Race Date - to ensure the countdown days until the next race was also updated, I realised I needed a new function and to separate the update countdown and the append functions. This was useful as I was then able to use the update countdown function in the display client option - the countdown days will be accurate to the day it is viewed.
 - Enforce a minimum on the PB and Goal times - The user was able to input 00:01 for 5km/10km which doesn't make sense and produces strange race paces. So I decided to set a minimum/maximum limit for each race. The minimum time is the current world record for each race distance and the maximum time is the standard limit participants have to complete the race in. Normally, in organised races, there is a bus that follows the race pack and if there are people who are running too slowly, they are picked up by the bus so that the streets aren't blocked to other users for too long.
+
+#### To Be Fixed
+
+- if the race date falls in the past and then the user selects to view the client, the countdown will be an affirmative int.
 
 ## Deployment
 
