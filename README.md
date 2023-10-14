@@ -42,9 +42,9 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ## Future Features
 
-- I would like to allow for clients with no previous running experience to be added to the client list and develop the automated calculations to accomodate this feature.
+- I would like to allow for clients with no previous running experience, i.e. no PB, to be added to the client list and to then develop the automated calculations to accomodate this feature.
 - I would to create input and automated calculations options for other sports such as cycling, swimming, weight-lifting etc depending on the trainer's area of expertise and their clients' needs.
-- I would like to improve the pb and goal time inputs to include ss to make their pace times more accurate
+- I would like to improve the pb and goal time inputs to include "ss" to make their pace times more accurate.
 
 ## Technologies
 
@@ -86,7 +86,9 @@ As demonstated in the workflow image above, this app has 5 main features:
 #### Main Menu
 
 1. The app opens with a welcome message and asks the user to choose an action from the list of options - Add a client, view a client, edit a client, delete a client and finally exit the app.
+   <img src='/docs/menu/main-menu.png' >
 2. If the user types a number outside the range 1 - 5, they will be informed that their choice was invalid and then they will be prompted to choose again from the range of 1 - 5.
+   <img src='/docs/menu/main-menu-error.png' >
 3. The user can choose to type a number or type out their choice e.g. "1" or "Add a client". It is not case sensitive, so the user can type in all lower case, or in capitals, or in a mix of the two, with no errors arising.
 
 #### Action 1 - Add a client
@@ -94,25 +96,39 @@ As demonstated in the workflow image above, this app has 5 main features:
 ##### Name
 
 1. On selecting option one, the screen will be cleared and the user is prompted to type their client's First and Last names. The user must type two words only to match the specified pattern of "first + last" name.
+   <img src='/docs/action1/name.png' >
 2. If the user types only one name, they will see a warning saying their input does not match the specified pattern.
+   <img src='/docs/action1/name1.png' >
 3. If the user types three names, they will be similarly warned and prompted.
+   <img src='/docs/action1/name2.png' >
 4. The user can type a mix of upper and lower cases and the output will be converted to a "First Last" pattern when all the client's information is displayed at the end.
+   <img src='/docs/action1/name3.png' > <img src='/docs/action1/name4.png' >
 
 ##### Email
 
-5. The user is next asked to input the client's email address. The user must include a @ symbol and a "." for the address to be valid.
+5. The user is next asked to input the client's email address.
+   <img src='/docs/action1/email.png' >
+   The user must include a @ symbol and a "." for the address to be valid.
+   <img src='/docs/action1/email1.png' >
 6. If the user inputs an email that already exists in the client list database (googlesheets), they will be warned and then the Main Menu will be displayed again.
+   <img src='/docs/action1/email2.png' >
 
 ##### Age
 
 7. On entering a valid, unique email, the user will then prompted to input their client's age.
-8. The user cannot input any letters, only whole numbers are accepted. The user cannot input a number below 18 or above 100. They will be warned about their error and then prompted to input a valid, whole number age.
+8. The user cannot input any letters, only whole numbers are accepted.
+   <img src='/docs/action1/age1.png' >
+   The user cannot input a number below 18 or above 100. They will be warned about their error and then prompted to input a valid, whole number age.
+   <img src='/docs/action1/age2.png' >
 
 ##### Distance
 
-9. When the user has input a valid, they are next prompted to choose their client's goal distance that they are training for. The user can choose between 5km, 10km, Half-Marathon, Marathon.
+9. When the user has input a valid age, they are next prompted to choose their client's goal distance that they are training for. The user can choose between 5km, 10km, Half-Marathon, Marathon.
+   <img src='/docs/action1/distance.png' >
 10. If the user inputs a value outside the range 1-4, they will be warned that their input is invalid and then prompted to input a valid number.
+    <img src='/docs/action1/distance1.png' >
 11. The user can input a number or type out their choice in any combination of lower/uppercase text, and this will be accepted by the program.
+    <img src='/docs/action1/distance2.png' >
 
 ##### PB Time
 
