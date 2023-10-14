@@ -102,14 +102,17 @@ As demonstated in the workflow image above, this app has 5 main features:
 3. If the user types three names, they will be similarly warned and prompted.
    <img src='/docs/action1/name2.png' >
 4. The user can type a mix of upper and lower cases and the output will be converted to a "First Last" pattern when all the client's information is displayed at the end.
-   <img src='/docs/action1/name3.png' > <img src='/docs/action1/name4.png' >
+   <img src='/docs/action1/name3.png' >
+   <img src='/docs/action1/name4.png' >
 
 ##### Email
 
 5. The user is next asked to input the client's email address.
    <img src='/docs/action1/email.png' >
-   The user must include a @ symbol and a "." for the address to be valid.
-   <img src='/docs/action1/email1.png' >
+
+The user must include a @ symbol and a "." for the address to be valid.
+<img src='/docs/action1/email1.png' >
+
 6. If the user inputs an email that already exists in the client list database (googlesheets), they will be warned and then the Main Menu will be displayed again.
    <img src='/docs/action1/email2.png' >
 
@@ -118,8 +121,9 @@ As demonstated in the workflow image above, this app has 5 main features:
 7. On entering a valid, unique email, the user will then prompted to input their client's age.
 8. The user cannot input any letters, only whole numbers are accepted.
    <img src='/docs/action1/age1.png' >
-   The user cannot input a number below 18 or above 100. They will be warned about their error and then prompted to input a valid, whole number age.
-   <img src='/docs/action1/age2.png' >
+
+The user cannot input a number below 18 or above 100. They will be warned about their error and then prompted to input a valid, whole number age.
+<img src='/docs/action1/age2.png' >
 
 ##### Distance
 
