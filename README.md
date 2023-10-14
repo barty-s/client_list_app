@@ -17,7 +17,7 @@ The user, i.e. the trainer, can add new clients, view clients, edit clients' inf
 
 ## Features
 
-<img src='/readme/workflow.png' >
+<img src='/docs/workflow.png' >
 
 As demonstated in the workflow image above, this app has 5 main features:
 
@@ -73,7 +73,7 @@ As demonstated in the workflow image above, this app has 5 main features:
 - datetime - To format date and time inputs, and to get the current date which is used in the countdown function.
 - os - To clear the terminal screen after the user selects an action. This allows for better UX by displaying the data relevant to the action and avoid excessive scrolling.
 - termcolor - To add color to various print statements to improve UX.
-- time - To use the sleep() function so as to improve UX and slow down the speed of the messages being displayed.
+- time - To use the sleep() function to improve UX and slow down the speed of the messages being displayed.
 
 ## Testing
 
@@ -83,7 +83,21 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ### Test Cases (user based with screenshots)
 
-1. Main Menu - the app opens with a welcome message and asks the user to choose an action from the list.
+#### Main Menu
+
+1. The app opens with a welcome message and asks the user to choose an action from the list of options - Add a client, view a client, edit a client, delete a client and finally exit the app.
+2. If the user types a number outside the range 1 - 5, they will be informed that their choice was invalid and then they will be prompted to choose again from the range of 1 - 5.
+3. The user can choose to type a number or type out their choice e.g. "1" or "Add a client". It is not case sensitive, so the user can type in all lower case, or in capitals, or in a mix of the two, with no errors arising.
+
+#### Action 1 - Add a client
+
+#### Action 2 - View a client
+
+#### Action 3 - Edit a client
+
+#### Action 4 - Delete a client
+
+#### Action 5 - Exit
 
 ### Fixed Bugs
 
