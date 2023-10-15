@@ -96,14 +96,17 @@ As demonstated in the workflow image above, this app has 5 main features:
 ##### Name
 
 1. On selecting option one, the screen will be cleared and the user is prompted to type their client's First and Last names. The user must type two words only to match the specified pattern of "first + last" name.
-   <img src='/docs/action1/name.png' >
+
+<img src='/docs/action1/name.png' >
+
 2. If the user types only one name, they will see a warning saying their input does not match the specified pattern.
-   <img src='/docs/action1/name1.png' >
+
+<img src='/docs/action1/name1.png' >
 3. If the user types three names, they will be similarly warned and prompted.
    <img src='/docs/action1/name2.png' >
 4. The user can type a mix of upper and lower cases and the output will be converted to a "First Last" pattern when all the client's information is displayed at the end.
-   <img src='/docs/action1/name3.png' >
-   <img src='/docs/action1/name4.png' >
+   
+<img src='/docs/action1/name3.png' > <img src='/docs/action1/name4.png' >
 
 ##### Email
 
@@ -120,19 +123,26 @@ The user must include a @ symbol and a "." for the address to be valid.
 
 7. On entering a valid, unique email, the user will then prompted to input their client's age.
 8. The user cannot input any letters, only whole numbers are accepted.
-   <img src='/docs/action1/age1.png' >
+
+<img src='/docs/action1/age1.png' >
 
 The user cannot input a number below 18 or above 100. They will be warned about their error and then prompted to input a valid, whole number age.
+
 <img src='/docs/action1/age2.png' >
 
 ##### Distance
 
 9. When the user has input a valid age, they are next prompted to choose their client's goal distance that they are training for. The user can choose between 5km, 10km, Half-Marathon, Marathon.
-   <img src='/docs/action1/distance.png' >
+
+<img src='/docs/action1/distance.png' >
+
 10. If the user inputs a value outside the range 1-4, they will be warned that their input is invalid and then prompted to input a valid number.
-    <img src='/docs/action1/distance1.png' >
+
+<img src='/docs/action1/distance1.png' >
+
 11. The user can input a number or type out their choice in any combination of lower/uppercase text, and this will be accepted by the program.
-    <img src='/docs/action1/distance2.png' >
+
+<img src='/docs/action1/distance2.png' >
 
 ##### PB Time
 
@@ -182,7 +192,8 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 #### Action 5 - Exit
 
-1. On selecting action 5, the user will signing-off message and the app will stop running.
+1. On selecting action 5, the user will be shown a signing-off message and the app will stop running.
+   <img src='/docs/action5/exit.png' >
 
 ### Bugs
 
