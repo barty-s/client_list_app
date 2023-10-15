@@ -111,7 +111,8 @@ As demonstated in the workflow image above, this app has 5 main features:
 ##### Email
 
 5. The user is next asked to input the client's email address.
-   <img src='/docs/action1/email.png' >
+
+<img src='/docs/action1/email.png' >
 
 The user must include a @ symbol and a "." for the address to be valid.
 <img src='/docs/action1/email1.png' >
