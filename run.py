@@ -180,7 +180,7 @@ def calculate_pb(data):
     seconds = pb_pace * 60
     m, s = divmod(seconds, 60)
     return "%02d:%02d" % (m, s)
-
+    
 
 def calculate_goal_pace(data):
     """
@@ -227,9 +227,7 @@ def search_client_email():
     """
     os.system("cls" if os.name == "nt" else "clear")
     try:
-        print(colored("Search by client's email address:", "blue"))
-        email = pyip.inputEmail
-        print("\n")
+        email = pyip.inputEmail(colored("Search by client's email address:\n", "blue"))
         email_list = running_worksheet.col_values(2)
         client_index = email_list.index(email)
         return client_index

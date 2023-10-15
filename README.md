@@ -407,8 +407,9 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 - For help with date validation - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python
 - For explanation on OS and clear screen () - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python
 - For explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
+- For explanation of divmod() funtion - https://www.programiz.com/python-programming/methods/built-in/divmod
 - For explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
-- For an explanation on how to import and use termcolor - https://pypi.org/project/termcolor/
+- For an explanation on how to import and use of termcolor - https://pypi.org/project/termcolor/
 - For an explanation on the time.sleep() function - https://www.geeksforgeeks.org/how-to-add-time-delay-in-python/
 
 ## Acknowledgements
