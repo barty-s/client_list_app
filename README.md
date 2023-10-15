@@ -232,7 +232,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 <img src='/docs/action2/search2.png' >
 
-4. When the user inputs a valid email that exists in the database, the client's information connected to that email will be displayed and the main menu will also be displayed.
+4. When the user inputs a valid email that exists in the database, the "days until the next race" figure will be updated from today. The client's information will be displayed and the Main Menu will also be displayed.
 
 <img src='/docs/action2/search3.png' >
 
@@ -284,16 +284,45 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 8. On selecting a valid option from the list, the user will then be prompted to update their client's PB and Goal time for that distance. The same validation requirements and time limits are applied as outlined in the Add a Client section.
 
-<img src='/docs/action3/edit_distance1.png' >
 <img src='/docs/action3/edit_distance2.png' >
 
-9. On entering valid time data, the database will be updated for distance, PB and goal time. The client's updated data will be displayed along with the Main Menu.
+9. On entering valid time data, the database will be updated for distance, PB and goal time. The current race pace and goal race pace will also be updated in the database. The client's updated data will be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_distance4.png' >
+<img src='/docs/action3/edit_distance3.png' >
 
 ##### Edit Current PB
 
+10. If the user selects to edit their client's current PB, they will be prompted to enter the new PB time. The same validation requirements and time limits are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_pb.png' >
+
+11. On entering valid time data, the database will be updated with the new current PB. The current race pace will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_pb2.png' >
+<img src='/docs/action3/edit_pb1.png' >
+
 ##### Edit Goal Time
 
+12. If the user selects to edit their client's current goal time, they will be prompted to enter the new goal time. The same validation requirements and time limits are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_gt.png' >
+
+13. On entering valid time data, the database will be updated with the new goal time. The goal race pace will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_gt2.png' >
+<img src='/docs/action3/edit_gt1.png' >
+
 ##### Edit Next Race Date
+
+14. If the user selects to edit their client's next race date, they will be prompted to enter the new race date. The same validation requirements and date limits are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_date.png' >
+
+13. On entering a valid new date, the database will be updated with the new race date. The days until race countdown will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_date2.png' >
+<img src='/docs/action3/edit_date1.png' >
 
 #### Action 4 - Delete a client
 
@@ -306,9 +335,15 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 <img src='/docs/action4/delete1.png' >
 
-4. If the user chooses not to delete a client, they will be shown a message stating the client has not been deleted and the main menu will be displayed.
+4. If the user chooses not to delete a client, they will be shown a message stating the client has not been deleted and the main menu will be displayed. The database will not be affected.
 
 <img src='/docs/action4/delete2.png' >
+<img src='/docs/action4/delete3.png' >
+
+5. If the user type "y" or any of the affirmative possibilities, they will be a shown a message confirming the client's data has been removed from the database and the Main Menu will be displayed. The database will be updated.
+
+<img src='/docs/action4/delete4.png' >
+<img src='/docs/action4/delete5.png' >
 
 #### Action 5 - Exit
 
