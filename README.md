@@ -142,7 +142,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 ##### Distance
 
-9. When the user has input a valid age, they are next prompted to choose their client's goal distance that they are training for. The user can choose between 5km, 10km, Half-Marathon, Marathon.
+9. When the user has input a valid age, they are next prompted to choose their client's goal distance that they are training for from the list of race distance options. The user can choose between 5km, 10km, Half-Marathon, Marathon.
 
 <img src='/docs/action1/distance.png' >
 
@@ -239,12 +239,61 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 #### Action 3 - Edit a client
 
 1. On selecting action 3, the user will be prompted to input the client's email.
-2. On inputting a valid email, the screen will be cleared and the client's data will be displayed, with the "Days until next race" having been updated from the present day. Below the client's data, the user will see a menu of elements to be edited, which are all of the inputs outlined in the "Add a Client" section of this README. The user also has a option to return to the Main Menu if they do not wish to edit anything.
+2. On inputting a valid email that exists in the database, the screen will be cleared and the searched client's data will be displayed, with the "Days until next race" having been updated from the present day. Below the client's data, the user will see a menu of elements to be edited, which are all of the inputs outlined in the "Add a Client" section of this README. The user also has a option to return to the Main Menu if they do not wish to edit anything.
+
+<img src='/docs/action3/edit_menu.png' >
 
 ##### Edit Name
 
-1. If the user selects to edit their client's name, they will be prompted to input the client's name. The same validation requirements are applied as outlined in the Add a Client section.
+1. If the user selects to edit their client's name, they will be prompted to update the client's name. The same validation requirements are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_name.png' >
+
 2. On inputting a valid First + Last name combination, the database will be updated and the client's updated data will be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_name2.png' >
+<img src='/docs/action3/edit_name1.png' >
+
+##### Edit Email
+
+3. If the user selects to edit their client's email address, they will be prompted to update the client's email address. The same validation requirements are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_email.png' >
+
+4. On inputting a valid email address, the database will be updated and the client's updated data will be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_email2.png' >
+<img src='/docs/action3/edit_email1.png' >
+
+##### Edit Age
+
+5. If the user selects to edit their client's age, they will be prompted to update the client's age. The same validation requirements and minimum/maximum limits are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_age.png' >
+
+6. On inputting a valid age, the database will be updated and the client's updated data will be displayed along with the Main Menu.
+
+<img src='/docs/action3/edit_age2.png' >
+<img src='/docs/action3/edit_age1.png' >
+
+##### Edit Goal Distance
+
+7. If the user selects to edit their client's goal distance, they will be warned that they will also need to edit their client's PB and Goal Time to correspond to the new goal distance. They will then be shown the race distance options list.
+
+<img src='/docs/action3/edit_distance.png' >
+
+8. On selecting a valid option from the list, the user will then be prompted to update their client's PB and Goal time for that distance. The same validation requirements and time limits are applied as outlined in the Add a Client section.
+
+<img src='/docs/action3/edit_distance1.png' >
+<img src='/docs/action3/edit_distance2.png' >
+
+9. On entering valid time data, the database will be updated for distance, PB and goal time. The client's updated data will be displayed along with the Main Menu.
+
+##### Edit Current PB
+
+##### Edit Goal Time
+
+##### Edit Next Race Date
 
 #### Action 4 - Delete a client
 

@@ -424,6 +424,7 @@ def client_list_menu():
         if searched_client_index:
             print("\n")
             edit_client_data(searched_client_index)
+            print("\n")
             client_list_menu()
         else:
             print("\n")
