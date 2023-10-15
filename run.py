@@ -46,13 +46,14 @@ def new_client_data():
         ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
     )
     print("\n")
-    print(f"Current PB for {race_distance} to nearest minute as hh:mm :")
+    print(f"Current PB for {race_distance} as hh:mm :")
     current_pb = validate_times(race_distance)
     print("\n")
-    print(f"Goal time for next {race_distance} race to nearest minute as hh:mm :")
+    print(f"Goal time for next {race_distance} as hh:mm :")
     goal_time = validate_times(race_distance)
     print("\n")
-    next_race = pyip.inputDate(f"Date of next {race_distance} race as mm/dd/yyyy: \n")
+    next_race = pyip.inputDate(f"Next {race_distance} race date: mm/dd/yyyy")
+    print("\n")
     validated_next_race = validate_race_date(next_race)
 
     new_data = [
@@ -69,7 +70,7 @@ def new_client_data():
 
 def validate_email(email):
     """
-    Checks database to see if a client already exists 
+    Checks database to see if a client already exists
     with the input email address and then warns user
     """
     email_list = running_worksheet.col_values(2)
@@ -84,8 +85,9 @@ def validate_times(distance):
     """
     Depending on the distance of the client's race, asks the user to
     input the client's personal best and goal times.
-    There are min and max time limits on each race distance distance using
-    the world record times as min values and standard race limits as max values.
+    There are min and max time limits on each race distance
+    using the world record times as min values
+    and standard race limits as max values.
     """
     if distance == "5km":
         print(colored("The max time for a 5km race is 00:59", "cyan"))
@@ -98,7 +100,7 @@ def validate_times(distance):
         return race_time
     elif distance == "10km":
         print(colored("The max time for a 10km race is 02:59", "cyan"))
-        hours = pyip.inputInt("hh: \n",min=0, max=2)
+        hours = pyip.inputInt("hh: \n", min=0, max=2)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=26, max=59)
         else:
@@ -106,8 +108,8 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     elif distance == "Half-Marathon":
-        print(colored("The max time for a Half-Marathon race is 03:59", "cyan"))
-        hours = pyip.inputInt("hh: \n",min=0, max=3)
+        print(colored("The limit for a Half-Marathon race is 03:59", "cyan"))
+        hours = pyip.inputInt("hh: \n", min=0, max=3)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=57, max=59)
         else:
@@ -131,10 +133,11 @@ def validate_race_date(input_date):
 
     while True:
         if today >= input_date:
-            print(colored("Race date must be in the future! Please try again...", "red"))
+            print(colored("Race date must be in the future!", "red"))
+            print(colored("Please try again...", "red"))
             input_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
         elif input_date >= date_limit:
-            print(colored("The race date can't be later than 12/31/2030", "red"))
+            print(colored("The race date limit is 12/31/2030", "red"))
             input_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
         else:
             return date
@@ -142,7 +145,8 @@ def validate_race_date(input_date):
 
 def calculate_days_until_next_race(data):
     """
-    Calculates a countdown for how many days are left until the client's race day
+    Calculates a countdown for how many
+    days are left until the client's race day
     """
     next_race = data[6]
     next_race_date = date.fromisoformat(next_race)
@@ -223,9 +227,11 @@ def search_client_email():
     """
     os.system("cls" if os.name == "nt" else "clear")
     try:
-        client_email = pyip.inputEmail(colored("Search by client's email address: \n", "blue"))
+        print(colored("Search by client's email address:", "blue"))
+        email = pyip.inputEmail
+        print("\n")
         email_list = running_worksheet.col_values(2)
-        client_index = email_list.index(client_email)
+        client_index = email_list.index(email)
         return client_index
 
     except ValueError:
@@ -234,7 +240,8 @@ def search_client_email():
 
 def get_client_data(data):
     """
-    Retreives client's data using their email address and updates the days til race countdown
+    Retreives client's data using their email
+    address and updates the days til race countdown
     """
     retrieved_data = running_worksheet.row_values((data + 1))
     updated_days = calculate_days_until_next_race(retrieved_data)
@@ -339,9 +346,10 @@ def edit_client_data(data):
         t.sleep(1.5)
         view_client_data(updated_client)
     elif edit_actions == "Next Race Date":
-        new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
-        validated_new_next_race_date = validate_race_date(new_next_race_date)
-        running_worksheet.update_cell((data + 1), 7, str(validated_new_next_race_date))
+        new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy:")
+        print("\n")
+        validated_date = validate_race_date(new_next_race_date)
+        running_worksheet.update_cell((data + 1), 7, str(validated_date))
         updated_client = running_worksheet.row_values((data + 1))
         update_client_days = calculate_days_until_next_race(updated_client)
         running_worksheet.update_cell((data + 1), 8, str(update_client_days))
@@ -398,7 +406,9 @@ def client_list_menu():
     The user can add, display, edit, delete a client or exit program.
     The main menu is displayed again after each action is completed.
     """
-    print(colored("What you like to do? Type a number from the list below:\n", "magenta"))
+    print(colored("What you like to do?", "magenta"))
+    print(colored("Type a number from the list below:", "magenta"))
+    print("\n")
     actions = pyip.inputMenu(
         [
             "Add a client",
@@ -413,9 +423,9 @@ def client_list_menu():
     if actions == "Add a client":
         new_client = new_client_data()
         days_countdown = calculate_days_until_next_race(new_client)
-        client_appended_with_days = append_days_til_race(new_client, days_countdown)
+        client_appended_days = append_days_til_race(new_client, days_countdown)
         client_pb = calculate_pb(new_client)
-        client_appended_pb = append_race_pace(client_appended_with_days, client_pb)
+        client_appended_pb = append_race_pace(client_appended_days, client_pb)
         client_goal_pace = calculate_goal_pace(new_client)
         client_appended_race_pace = append_race_pace(
             client_appended_pb, client_goal_pace

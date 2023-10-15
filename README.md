@@ -82,8 +82,8 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ### Code Validation
 
-- PyLint - this is a static code analyzer which I installed in VSCode. It highlights problems in the code and gives suggestions on how best to style the code so as to follow the PEP 8 recommended style.
-- CI Python Linter https://pep8ci.herokuapp.com/
+- PyLint - A static code analyzer installed in VSCode. It highlights problems in the code and gives suggestions on how best to style the code so as to follow the PEP 8 recommended style for Python.
+- CI Python Linter https://pep8ci.herokuapp.com/ - no errors found
 
 ### Test Cases
 
