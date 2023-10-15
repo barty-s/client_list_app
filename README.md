@@ -238,7 +238,13 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 #### Action 3 - Edit a client
 
-1.
+1. On selecting action 3, the user will be prompted to input the client's email.
+2. On inputting a valid email, the screen will be cleared and the client's data will be displayed, with the "Days until next race" having been updated from the present day. Below the client's data, the user will see a menu of elements to be edited, which are all of the inputs outlined in the "Add a Client" section of this README. The user also has a option to return to the Main Menu if they do not wish to edit anything.
+
+##### Edit Name
+
+1. If the user selects to edit their client's name, they will be prompted to input the client's name. The same validation requirements are applied as outlined in the Add a Client section.
+2. On inputting a valid First + Last name combination, the database will be updated and the client's updated data will be displayed along with the Main Menu.
 
 #### Action 4 - Delete a client
 
