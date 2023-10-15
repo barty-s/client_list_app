@@ -87,7 +87,7 @@ def validate_times(distance):
     """
     if distance == "5km":
         print(colored("The max time for a 5km race is 00:59", "cyan"))
-        hours = pyip.inputInt("hh: \n", max=0)
+        hours = pyip.inputInt("hh: \n", min=0, max=0)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=12, max=59)
         else:
@@ -96,7 +96,7 @@ def validate_times(distance):
         return race_time
     elif distance == "10km":
         print(colored("The max time for a 10km race is 02:59", "cyan"))
-        hours = pyip.inputInt("hh: \n", max=2)
+        hours = pyip.inputInt("hh: \n",min=0, max=2)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=26, max=59)
         else:
@@ -105,7 +105,7 @@ def validate_times(distance):
         return race_time
     elif distance == "Half-Marathon":
         print(colored("The max time for a Half-Marathon race is 03:59", "cyan"))
-        hours = pyip.inputInt("hh: \n", max=3)
+        hours = pyip.inputInt("hh: \n",min=0, max=3)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=57, max=59)
         else:
