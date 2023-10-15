@@ -1,11 +1,12 @@
-import gspread
-from google.oauth2.service_account import Credentials
-import pyinputplus as pyip
+"""Modules used in the program"""
 import sys
 import os
 from datetime import date, time, datetime
-from termcolor import colored
 import time as t
+import gspread
+from google.oauth2.service_account import Credentials
+import pyinputplus as pyip
+from termcolor import colored
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -54,7 +55,7 @@ def new_client_data():
     next_race = pyip.inputDate(f"Date of next {race_distance} race as mm/dd/yyyy: \n")
     validated_next_race = validate_race_date(next_race)
 
-    client_data = [
+    new_data = [
         name,
         validated_email,
         age,
@@ -63,12 +64,13 @@ def new_client_data():
         str(goal_time),
         str(validated_next_race),
     ]
-    return client_data
+    return new_data
 
 
 def validate_email(email):
     """
-    Checks database to see if a client already exists with the input email address and then warns user
+    Checks database to see if a client already exists 
+    with the input email address and then warns user
     """
     email_list = running_worksheet.col_values(2)
     if email in email_list:
@@ -120,7 +122,7 @@ def validate_times(distance):
         return race_time
 
 
-def validate_race_date(date):
+def validate_race_date(input_date):
     """
     Makes sure that the date entered by the user for the client's next race
     is in the future and before the limit of 12/31/2030
@@ -128,12 +130,12 @@ def validate_race_date(date):
     date_limit = date.fromisoformat("2031-01-01")
 
     while True:
-        if today >= date:
+        if today >= input_date:
             print(colored("Race date must be in the future! Please try again...", "red"))
-            date = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
-        elif date >= date_limit:
+            input_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
+        elif input_date >= date_limit:
             print(colored("The race date can't be later than 12/31/2030", "red"))
-            date = pyip.inputDate(f"Date of next race as mm/dd/yyyy: \n")
+            input_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
         else:
             return date
 
@@ -234,8 +236,8 @@ def get_client_data(data):
     """
     Retreives client's data using their email address and updates the days til race countdown
     """
-    client_data = running_worksheet.row_values((data + 1))
-    updated_days = calculate_days_until_next_race(client_data)
+    retrieved_data = running_worksheet.row_values((data + 1))
+    updated_days = calculate_days_until_next_race(retrieved_data)
     running_worksheet.update_cell((data + 1), 8, str(updated_days))
     updated_client = running_worksheet.row_values((data + 1))
     return updated_client
@@ -247,9 +249,9 @@ def edit_client_data(data):
     Then offers the user options to edit the client's data.
     """
     os.system("cls" if os.name == "nt" else "clear")
-    client_data = get_client_data(data)
-    view_client_data(client_data)
-    goal_distance = str(client_data[3])
+    update_client_data = get_client_data(data)
+    view_client_data(update_client_data)
+    goal_distance = str(update_client_data[3])
     print("\n")
     print(colored("What would you like to edit?\n", "magenta"))
     edit_actions = pyip.inputMenu(
@@ -291,8 +293,8 @@ def edit_client_data(data):
         t.sleep(1.5)
         view_client_data(updated_client)
     elif edit_actions == "Goal Distance":
-        print(
-            colored("You will need to update the current PB for this distance and the goal time too \n", "cyan"))
+        print(colored("You will need to update the current PB for", "cyan"))
+        print(colored("this distance and the goal time too \n", "cyan"))
         t.sleep(1.5)
         print("New goal distance: \n")
         new_goal_distance = pyip.inputMenu(
@@ -300,10 +302,8 @@ def edit_client_data(data):
         )
         print(f"Enter the client's PB for {new_goal_distance}")
         new_pb = validate_times(new_goal_distance)
-        
         print(f"Enter the client's goal time for {new_goal_distance}")
         new_goal_time = validate_times(new_goal_distance)
-        
         running_worksheet.update_cell((data + 1), 4, new_goal_distance)
         running_worksheet.update_cell((data + 1), 5, str(new_pb))
         running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
@@ -360,10 +360,11 @@ def delete_client_data(data):
     If answer is yes, deletes the client's data from the googlesheet database.
     """
     os.system("cls" if os.name == "nt" else "clear")
-    client_data = get_client_data(data)
-    view_client_data(client_data)
+    search_client_data = get_client_data(data)
+    view_client_data(search_client_data)
     print("\n")
-    delete_query = pyip.inputYesNo(colored("Are you sure you want to delete this client? - enter y/n\n", "magenta"))
+    print(colored("Are you sure you want to delete this client?", "magenta"))
+    delete_query = pyip.inputYesNo(colored("Enter y/n\n", "magenta"))
 
     if delete_query == "yes":
         running_worksheet.delete_rows((data + 1))
@@ -379,14 +380,22 @@ def view_client_data(data):
     Displays client data in an easily readable format
     """
     print(colored("CLIENT DATA\n", "green"))
-    print(
-        f"Name: {data[0]}\nEmail: {data[1]}\nAge: {data[2]}\nRace Distance: {data[3]}\nPB: {data[4]}\nGoal time: {data[5]}\nNext Race: {data[6]}\nDays until next race: {data[7]}\nCurrent Pace: {data[8]} mins/km\nGoal Pace: {data[9]} mins/km"
-    )
+    print(f"Name: {data[0]}")
+    print(f"Email: {data[1]}")
+    print(f"Age: {data[2]}")
+    print(f"Race Distance: {data[3]}")
+    print(f"PB: {data[4]}")
+    print(f"Goal time: {data[5]}")
+    print(f"Next Race: {data[6]}")
+    print(f"Days until next race: {data[7]}")
+    print(f"Current Pace: {data[8]} mins/km")
+    print(f"Goal Pace: {data[9]} mins/km")
 
 
 def client_list_menu():
     """
-    Displays a list of actions for the user to choose from i.e add, display, delete client or exit program.
+    Displays a list of actions for the user to choose from.
+    The user can add, display, edit, delete a client or exit program.
     The main menu is displayed again after each action is completed.
     """
     print(colored("What you like to do? Type a number from the list below:\n", "magenta"))
@@ -418,9 +427,9 @@ def client_list_menu():
     elif actions == "View a client":
         searched_client_index = search_client_email()
         if searched_client_index:
-            client_data = get_client_data(searched_client_index)
+            searched_client_data = get_client_data(searched_client_index)
             print("\n")
-            view_client_data(client_data)
+            view_client_data(searched_client_data)
             print("\n")
             client_list_menu()
         else:
@@ -462,4 +471,3 @@ def main():
 print("\n")
 print("Welcome to the Running Client List - Data Automation App\n")
 main()
-

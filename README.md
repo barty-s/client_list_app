@@ -59,6 +59,7 @@ As demonstated in the workflow image above, this app has 5 main features:
 - Git - version control
 - VSCode - as the program editor
 - Black - Python auto formatter installed in VSCode
+- PyLint - Code analyzer installed in VSCode to follow PEP 8 style guide
 - GitHub Desktop - to commit and push changes in the app's code
 - GitHub - to store the files in a repository and to link to Heroku
 - Heroku - to host the app in a mock terminal
@@ -81,6 +82,7 @@ As demonstated in the workflow image above, this app has 5 main features:
 
 ### Code Validation
 
+- PyLint - this is a static code analyzer which I installed in VSCode. It highlights problems in the code and gives suggestions on how best to style the code so as to follow the PEP 8 recommended style.
 - CI Python Linter https://pep8ci.herokuapp.com/
 
 ### Test Cases
