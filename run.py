@@ -169,7 +169,7 @@ def calculate_pb(data):
     elif distance == "Marathon":
         pb_pace = total_minutes / 42.195
     seconds = pb_pace * 60
-    m = int(seconds % 3600/60)
+    m = int(seconds % 3600 / 60)
     s = int(seconds % 60)
     if s == 0:
         return f"{m}:00"
@@ -192,7 +192,7 @@ def calculate_goal_pace(data):
     elif distance == "Marathon":
         goal_pace = total_minutes / 42.195
     seconds = goal_pace * 60
-    m = int(seconds % 3600/60)
+    m = int(seconds % 3600 / 60)
     s = int(seconds % 60)
     if s == 0:
         return f"{m}:00"
@@ -302,10 +302,11 @@ def edit_client_data(data):
         new_goal_distance = pyip.inputMenu(
             ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
         )
-        if new_goal_distance == goal_distance:
+        while new_goal_distance == goal_distance:
             print(colored("Please select a new distance\n", "red"))
             new_goal_distance = pyip.inputMenu(
-                ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True)
+                ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
+            )
         print(f"Enter the client's PB for {new_goal_distance}")
         new_pb = validate_times(new_goal_distance)
         print(f"Enter the client's goal time for {new_goal_distance}")
