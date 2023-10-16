@@ -171,7 +171,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 <img src='/docs/action1/pb.png' >
 
-14. If the user inputs an integer above 0 for the "hh" input, they will be warned that their input must be 0 at a maximum, so as not to exceed the 00:59 limit. The user can input 0 or 00 and both will be accepted. And for numbers below 10, it is not necessary to prefix with "0" e.g "7" is valid as is "07".
+14. If the user inputs an integer above 0 for the "hh" input, they will be warned that their input must be 0 at a maximum, so as not to exceed the 00:59 limit. The user can input 0 or 00 and both will be accepted.
 
 <img src='/docs/action1/pb1.png' >
 
@@ -179,7 +179,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 <img src='/docs/action1/pb2.png' >
 
-16. If the user selects 10km as the race distance, there will be a minimum limit of 00:26 minutes, the current world record time, and a maximum limit of 00:59, the standard limit for a 10km race.
+16. If the user selects 10km as the race distance, there will be a minimum limit of 00:26 minutes, the current world record time, and a maximum limit of 01:59, the standard limit for a 10km race. For numbers below 10, it is not necessary to prefix with "0" e.g "7" is valid as is "07".
 17. If the user selects Half-Marathon as the race distance, there will be a minimum limit of 00:57 minutes, the current world record time, and a maximum limit of 02:59, the standard limit for a half-marathon race.
 18. If the user selects Marathon as the race distance, there will be a minimum limit of 02:00 hours, the current world record time, and a maximum limit of 06:59, the standard limit for a marathon race.
 19. If the user inputs values outside the above-stated limits, they will be warned of either the maximum or minimum limit, and then prompted to input a valid value - as demonstrated with the 5km example images.
@@ -412,7 +412,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 - For an explanation of datetime and date countdown - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html
 - For help with date validation - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python
 - For explanation on OS and the clear screen method - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python
-- For explanation on converting decimal time to mm:ss for the race pace calculations functions and to customize code to fit the needs of this app - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
+- For explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
 - For explanation of divmod() funtion - https://www.programiz.com/python-programming/methods/built-in/divmod
 - For explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
 - For an explanation on how to import and use termcolor - https://pypi.org/project/termcolor/

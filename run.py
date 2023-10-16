@@ -90,8 +90,8 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     if distance == "10km":
-        print(colored("The max time for a 10km race is 02:59", "cyan"))
-        hours = pyip.inputInt("hh: \n", min=0, max=2)
+        print(colored("The max time for a 10km race is 01:59", "cyan"))
+        hours = pyip.inputInt("hh: \n", min=0, max=1)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=26, max=59)
         else:
@@ -169,9 +169,12 @@ def calculate_pb(data):
     elif distance == "Marathon":
         pb_pace = total_minutes / 42.195
     seconds = pb_pace * 60
-    m, s = divmod(seconds, 60)
-    return "%02d:%02d" % (m, s)
-    
+    m = int(seconds % 3600/60)
+    s = int(seconds % 60)
+    if s == 0:
+        return f"{m}:00"
+    return f"{m}:{s}"
+
 
 def calculate_goal_pace(data):
     """
@@ -189,8 +192,11 @@ def calculate_goal_pace(data):
     elif distance == "Marathon":
         goal_pace = total_minutes / 42.195
     seconds = goal_pace * 60
-    m, s = divmod(seconds, 60)
-    return "%02d:%02d" % (m, s)
+    m = int(seconds % 3600/60)
+    s = int(seconds % 60)
+    if s == 0:
+        return f"{m}:00"
+    return f"{m}:{s}"
 
 
 def append_race_pace(data, pace):
@@ -375,7 +381,7 @@ def view_client_data(data):
     """
     Displays client data in an easily readable format
     """
-    print(colored("CLIENT DATA\n", "green"))
+    print(colored("CLIENT DATA", "green"))
     print(f"Name: {data[0]}")
     print(f"Email: {data[1]}")
     print(f"Age: {data[2]}")
