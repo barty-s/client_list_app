@@ -302,6 +302,10 @@ def edit_client_data(data):
         new_goal_distance = pyip.inputMenu(
             ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
         )
+        if new_goal_distance == goal_distance:
+            print(colored("Please select a new distance\n", "red"))
+            new_goal_distance = pyip.inputMenu(
+                ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True)
         print(f"Enter the client's PB for {new_goal_distance}")
         new_pb = validate_times(new_goal_distance)
         print(f"Enter the client's goal time for {new_goal_distance}")
