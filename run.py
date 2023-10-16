@@ -42,7 +42,7 @@ def new_client_data():
     goal_time = validate_times(race_distance)
     print("\n")
     print(f"Date of next {race_distance} race:")
-    print(colored("Race can't be after 12/31/2030", "cyan"))
+    print(colored("Race date can't be after 12/31/2030", "cyan"))
     next_race = pyip.inputDate("(Please type as mm/dd/yyyy)\n")
     validated_next_race = validate_race_date(next_race)
 
@@ -61,7 +61,8 @@ def new_client_data():
 def validate_email(email):
     """
     Checks database to see if a client already exists
-    with the input email address and then warns user
+    with the input email address. Warns user if a client
+    already exists with that email.
     """
     email_list = running_worksheet.col_values(2)
     if email in email_list:
@@ -98,7 +99,7 @@ def validate_times(distance):
         race_time = time(hours, minutes)
         return race_time
     if distance == "Half-Marathon":
-        print(colored("The limit for a Half-Marathon race is 03:59", "cyan"))
+        print(colored("The max time for a Half-Marathon race is 03:59", "cyan"))
         hours = pyip.inputInt("hh: \n", min=0, max=3)
         if hours == 0:
             minutes = pyip.inputInt("mm: \n", min=57, max=59)
@@ -265,7 +266,7 @@ def edit_client_data(data):
 
     if edit_actions == "Name":
         new_name = pyip.inputRegex(
-            r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update client's Full Name: \n"
+            r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update Full Name: \n"
         ).title()
         running_worksheet.update_cell((data + 1), 1, new_name)
         print(colored("Client successfully updated \n", "green"))
@@ -393,7 +394,7 @@ def client_list_menu():
     The user can add, display, edit, delete a client or exit program.
     The main menu is displayed again after each action is completed.
     """
-    print(colored("What you like to do?", "magenta"))
+    print(colored("What would you like to do?", "magenta"))
     print(colored("Type a number from the list below:", "magenta"))
     print("\n")
     actions = pyip.inputMenu(
@@ -466,5 +467,5 @@ def main():
 
 
 print("\n")
-print("Welcome to the Running Client List - Data Automation App\n")
+print("Welcome to the Running Client List Data Automation App\n")
 main()
