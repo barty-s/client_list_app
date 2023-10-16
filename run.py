@@ -1,4 +1,4 @@
-"""Modules used in the program"""
+""" Modules used in the program """
 import sys
 import os
 from datetime import date, time, datetime
@@ -247,7 +247,7 @@ def get_client_data(data):
 
 def edit_client_data(data):
     """
-    Displays the client's data retreived using their email address.
+    Displays the client's data retrieved using their email address.
     Then offers the user options to edit the client's data.
     """
     os.system("cls" if os.name == "nt" else "clear")

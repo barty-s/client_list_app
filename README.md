@@ -294,6 +294,8 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 8. If the user tries to select the same race distance that already exists for the client in the database, they will be warned and then prompted to select a new race distance.
 
+<img src='/docs/action3/edit_distance1.png'
+
 9. On selecting a valid option from the list, the user will then be prompted to update their client's PB and Goal time for that distance. The same validation requirements and time limits are applied as outlined in the Add a client section.
 
 <img src='/docs/action3/edit_distance2.png' >
@@ -413,10 +415,10 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 - For an explanation of googlesheets methods - https://www.python-engineer.com/posts/google-sheets-api/ , https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/
 - For an explanation of datetime and date countdown - https://www.dataquest.io/blog/python-datetime/, https://docs.python.org/3/library/datetime.html
 - For help with date validation - https://stackoverflow.com/questions/64601493/time-cannot-be-set-in-the-past-condition-python
-- For explanation on OS and the clear screen method - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python
-- For explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
-- For explanation of divmod() funtion - https://www.programiz.com/python-programming/methods/built-in/divmod
-- For explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
+- For an explanation on OS and the clear screen method - https://www.codingninjas.com/studio/library/how-to-clear-a-screen-in-python
+- For an explanation on converting decimal time to mm:ss for the race pace calculations functions - https://stackoverflow.com/questions/32087209/converting-decimal-time-hh-hhh-into-hhmmss-in-python
+- For an explanation of divmod() funtion - https://www.programiz.com/python-programming/methods/built-in/divmod
+- For an explanation on converting strings to datetime objects - https://www.datacamp.com/tutorial/converting-strings-datetime-objects
 - For an explanation on how to import and use termcolor - https://pypi.org/project/termcolor/
 - For an explanation on the time.sleep() function - https://www.geeksforgeeks.org/how-to-add-time-delay-in-python/
 
