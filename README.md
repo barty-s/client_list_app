@@ -3,19 +3,19 @@
 ## Purpose of the Project
 
 The purpose of this app is to allow a running trainer to access their list of clients.
-The user, i.e. the trainer, can add new clients, view clients, edit clients' information and delete clients, as needed. There are also automated calculations done on the input data to determine the training needs of the client which will assist the trainer in making a training plan. It is assumed that a new client has previous running experience and is hiring this trainer to improve their running time, therefore all inputs must be completed.
+The user, i.e. the trainer, can add new clients, view clients, edit clients' information and delete clients, as needed. There are also automated calculations done on the input data to determine the training needs of the client which will assist the trainer in making an effective training plan. It is assumed that a new client has previous running experience and is hiring this trainer to help them improve their running time, therefore all inputs must be completed.
 
-<img srce='/docs/app.png'>
+<img src='/docs/app.png'>
 
 - Live site: https://running-client-list-cbd69015c7bc.herokuapp.com/
 - Googlesheets link: https://docs.google.com/spreadsheets/d/17M0THf5HOCmTCS_M8pkf5eGf52iwv_LcsSCPS_9-gNo/edit?usp=sharing
 
 ## User Stories
 
-1. As a user, a running trainer, I want to be able to add my client's data and have the program give me automated outputs on how many days are left until the client's next race, and what their current and goal race paces are.
-2. As a user, I want to be able to view my client's information on searching with their email address.
-3. As a user, I want to be able to edit any of the client's data.
-4. As a user, I want to be able to delete a client from the client list if I need to.
+1. As a user, a running trainer, I want to be able to add my new client's data and have the program give me automated outputs on how many days are left until the client's next race, and what their current and goal race paces are.
+2. As a user, I want to be able to view my clients' information by searching with their email address.
+3. As a user, I want to be able to edit any of my clients' data.
+4. As a user, I want to be able to delete any client from the client list, if I need to.
 
 ## Features
 
@@ -29,13 +29,13 @@ As demonstated in the workflow image above, this app has five main features:
 - a valid email address, which doesn't already exist in the client list
 - the client's age, with the minimum age being 18 and the maximum being 100
 - the race distance the client is training for
-- the client's current Personal Best (PB) time for the race distance
+- the client's current Personal Best (PB) time for the selected race distance
 - the date of the client's next race, in mm/dd/yyyy format and which must be a future date and not beyond the limit of 12/31/2030
 - the time the client wants to complete this race in
 
 The data will be displayed once all the input sections have been correctly completed, and the user will be shown how many days there are until the client's next race, as well as the client's current race pace and their goal race pace.
 
-2. Display a client - the user can search for an existing client and their data will be displayed. Originally, the client's last name was going to be used to search but during the development of the app this element was modified to use the client's email instead, as that is a unique datum and will avoid any data retrieval issues if multiple clients with the same last name exist. Before the client's data is displayed, the up-to-date number of days until the race will be calculated and the client's data will be updated in the database.
+2. Display a client - the user can search for an existing client and their data will be displayed. Originally, the client's last name was going to be used to search but during the development of the app this element was modified to use the client's email instead, as that is a unique datum and will avoid any data retrieval issues if multiple clients with the same last name exist in the client list. Before the client's data is displayed, the up-to-date number of days until the race will be calculated and the client's data will be updated in the database.
 
 3. Edit a client - the user can search for a client using their email address. If the client exists the user will be given the option to edit any of the inputs or to return to the Main Menu. If the user wants to edit the race distance, they will be asked to edit the client's PB and goal time too. The current race pace and goal race pace will be updated accordingly. If the race date is changed, the new number of days until the race will be calculated and displayed.
 
@@ -51,7 +51,9 @@ The data will be displayed once all the input sections have been correctly compl
 
 - I would like to improve the pb and goal time inputs to include "ss" to make their pace times more accurate.
 
-- During testing it became apparent that if the race date falls into the past naturally, and then the user selects to view the client, the countdown will be diplayed as a positive integer. To resolve this issue I would like to add new fuctions to deal with this scenario. would also like to remove the Days Til Race column in the Googlesheet so that if the user is viewing that, they will not see the countdown, as it may not be up-to-date.
+### Future Enhancements
+
+- During testing it became apparent that if the race date falls into the past naturally, and then the user selects to view the client, the countdown will be diplayed as a positive integer. To resolve this issue I would like to add new fuctions to deal with this scenario. I would also like to remove the Days Til Race column in the Googlesheet so that if the user is viewing that, they will not see the countdown, as it may not be up-to-date.
 
 ## Technologies
 
@@ -64,7 +66,7 @@ The data will be displayed once all the input sections have been correctly compl
 - Git - version control
 - VSCode - as the program editor
 - Black - Python auto formatter installed in VSCode
-- PyLint - Code analyzer installed in VSCode to test that the code follows PEP 8 style guidelines
+- PyLint - Code analyzer installed in VSCode to test that the code follows PEP8 style guidelines
 - GitHub Desktop - to commit and push changes in the app's code
 - GitHub - to store the files in a repository and to link to Heroku
 - Heroku - to deploy the app in a mock terminal
@@ -73,20 +75,20 @@ The data will be displayed once all the input sections have been correctly compl
 
 ### Modules
 
-- sys module - To access the interpreter.
-- os - To clear the terminal screen after the user selects an action. This allows for better UX by displaying the data relevant to the action and avoid excessive scrolling.
-- datetime - To format date and time inputs, and to get the current date which is used in the countdown function.
-- time - To use the sleep() function to improve UX and slow down the speed of the messages being displayed.
-- gspread - A Python API for Google Sheets which is used to access and update data stored in the 'running' sheet in the spreadsheet 'client_list'.
-- google.oauth2.service_account - To import the Credentials Class which then uses the creds.json file.
-- PyInputPlus module - For additional input validation. I came across this module while I was researching how to validate email inputs. It has many built-in features that add automatic validation to emails, integers, strings, dates, times - all of which I made use of in this app.
-- termcolor - To add color to various print statements to improve UX.
+- sys module - to access the interpreter.
+- os - to clear the terminal screen after the user selects an action. This allows for better UX by displaying the data relevant to the action and avoid excessive scrolling.
+- datetime - to format date and time inputs, and to get the current date which is used in the countdown function.
+- time - to use the sleep() function to improve UX and slow down the speed of the messages being displayed.
+- gspread - a Python API for Google Sheets which is used to access and update data stored in the 'running' sheet in the spreadsheet 'client_list'.
+- google.oauth2.service_account - to import the Credentials Class which then uses the creds.json file.
+- PyInputPlus module - for additional input validation. I came across this module while I was researching how to validate email inputs. It has many built-in features that add automatic validation to emails, integers, strings, dates, times - all of which I made use of in this app.
+- termcolor - to add color to various print statements to improve UX.
 
 ## Testing
 
 ### Code Validation
 
-- PyLint - A static code analyzer installed in VSCode. It highlights problems in the code and gives suggestions on how best to style the code so as to follow the PEP 8 recommended style for Python - no errors found
+- PyLint - A static code analyzer installed in VSCode. It highlights problems in the code and gives suggestions on how best to style the code so as to follow the PEP8 style recommendations for Python - no errors found
 - CI Python Linter https://pep8ci.herokuapp.com/ - no errors found
 
 ### Test Cases
@@ -194,7 +196,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 ##### Date of next race
 
-22. The user is finally asked to input the date of their client's next race. The user must follow the format mm/dd/yyyy for the date to be accepted as valid.
+22. The user is finally asked to input the date of their client's next race. The user must follow the format mm/dd/yyyy for the date to be accepted as valid. The user is warned that the date cannot be after 12/31/2030.
 
 <img src='/docs/action1/date.png' >
 
