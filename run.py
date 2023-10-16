@@ -3,24 +3,13 @@ import sys
 import os
 from datetime import date, time, datetime
 import time as t
-import gspread
-from google.oauth2.service_account import Credentials
 import pyinputplus as pyip
 from termcolor import colored
+import spreadsheet
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive",
-]
-
-CREDS = Credentials.from_service_account_file("creds.json")
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open("client_list")
 
 # Global variables list
-running_worksheet = SHEET.worksheet("running")
+running_worksheet = spreadsheet.SHEET.worksheet("running")
 client_data = []
 today = date.today()
 
