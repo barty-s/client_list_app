@@ -294,7 +294,7 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 8. If the user tries to select the same race distance that already exists for the client in the database, they will be warned and then prompted to select a new race distance.
 
-<img src='/docs/action3/edit_distance1.png'
+<img src='/docs/action3/edit_distance1.png' >
 
 9. On selecting a valid option from the list, the user will then be prompted to update their client's PB and Goal time for that distance. The same validation requirements and time limits are applied as outlined in the Add a client section.
 
