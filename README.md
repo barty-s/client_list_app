@@ -292,44 +292,46 @@ The user cannot input a number below 18 or above 100. They will be warned about 
 
 <img src='/docs/action3/edit_distance.png' >
 
-8. On selecting a valid option from the list, the user will then be prompted to update their client's PB and Goal time for that distance. The same validation requirements and time limits are applied as outlined in the Add a client section.
+8. If the user tries to select the same race distance that already exists for the client in the database, they will be warned and then prompted to select a new race distance.
+
+9. On selecting a valid option from the list, the user will then be prompted to update their client's PB and Goal time for that distance. The same validation requirements and time limits are applied as outlined in the Add a client section.
 
 <img src='/docs/action3/edit_distance2.png' >
 
-9. On entering valid time data, the database will be updated for distance, PB and goal time. The current race pace and goal race pace will also be updated in the database. The client's updated data will be displayed along with the Main Menu.
+10. On entering valid time data, the database will be updated for distance, PB and goal time. The current race pace and goal race pace will also be updated in the database. The client's updated data will be displayed along with the Main Menu.
 
 <img src='/docs/action3/edit_distance4.png' >
 <img src='/docs/action3/edit_distance3.png' >
 
 ##### Edit Current PB
 
-10. If the user selects to edit their client's current PB, they will be prompted to enter the new PB time. The same validation requirements and time limits are applied as outlined in the Add a client section.
+11. If the user selects to edit their client's current PB, they will be prompted to enter the new PB time. The same validation requirements and time limits are applied as outlined in the Add a client section.
 
 <img src='/docs/action3/edit_pb.png' >
 
-11. On entering valid time data, the database will be updated with the new current PB. The current race pace will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
+12. On entering valid time data, the database will be updated with the new current PB. The current race pace will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
 
 <img src='/docs/action3/edit_pb2.png' >
 <img src='/docs/action3/edit_pb1.png' >
 
 ##### Edit Goal Time
 
-12. If the user selects to edit their client's current goal time, they will be prompted to enter the new goal time. The same validation requirements and time limits are applied as outlined in the Add a client section.
+13. If the user selects to edit their client's current goal time, they will be prompted to enter the new goal time. The same validation requirements and time limits are applied as outlined in the Add a client section.
 
 <img src='/docs/action3/edit_gt.png' >
 
-13. On entering valid time data, the database will be updated with the new goal time. The goal race pace will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
+14. On entering valid time data, the database will be updated with the new goal time. The goal race pace will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
 
 <img src='/docs/action3/edit_gt2.png' >
 <img src='/docs/action3/edit_gt1.png' >
 
 ##### Edit Next Race Date
 
-14. If the user selects to edit their client's next race date, they will be prompted to enter the new race date. The same validation requirements and date limits are applied as outlined in the Add a client section.
+15. If the user selects to edit their client's next race date, they will be prompted to enter the new race date. The same validation requirements and date limits are applied as outlined in the Add a client section.
 
 <img src='/docs/action3/edit_date.png' >
 
-13. On entering a valid new date, the database will be updated with the new race date. The days until race countdown will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
+16. On entering a valid new date, the database will be updated with the new race date. The days until race countdown will also be updated in the database. The client's updated data will then be displayed along with the Main Menu.
 
 <img src='/docs/action3/edit_date2.png' >
 <img src='/docs/action3/edit_date1.png' >
