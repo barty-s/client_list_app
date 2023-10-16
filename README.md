@@ -7,8 +7,8 @@ The user, i.e. the trainer, can add new clients, view clients, edit clients' inf
 
 <img src='/docs/app.png'>
 
-- Live site: (https://running-client-list-cbd69015c7bc.herokuapp.com/){:target="\_blank"}
-- Googlesheets link: (https://docs.google.com/spreadsheets/d/17M0THf5HOCmTCS_M8pkf5eGf52iwv_LcsSCPS_9-gNo/edit?usp=sharing){:target="\_blank"}
+- <a href="https://running-client-list-cbd69015c7bc.herokuapp.com/" target="_blank">Link to Live site</a>
+- <a href="https://docs.google.com/spreadsheets/d/17M0THf5HOCmTCS_M8pkf5eGf52iwv_LcsSCPS_9-gNo/edit?usp=sharing" target="_blank">Link to Googlesheets</a>
 
 ## User Stories
 
