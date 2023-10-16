@@ -52,8 +52,9 @@ def new_client_data():
     print(f"Goal time for next {race_distance} as hh:mm :")
     goal_time = validate_times(race_distance)
     print("\n")
-    next_race = pyip.inputDate(f"Next {race_distance} race date: mm/dd/yyyy")
-    print("\n")
+    print(f"Date of next {race_distance} race:")
+    print(colored("Race can't be after 12/31/2030", "cyan"))
+    next_race = pyip.inputDate("(Please type as mm/dd/yyyy)\n")
     validated_next_race = validate_race_date(next_race)
 
     new_data = [
@@ -98,7 +99,7 @@ def validate_times(distance):
             minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
-    elif distance == "10km":
+    if distance == "10km":
         print(colored("The max time for a 10km race is 02:59", "cyan"))
         hours = pyip.inputInt("hh: \n", min=0, max=2)
         if hours == 0:
@@ -107,7 +108,7 @@ def validate_times(distance):
             minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
-    elif distance == "Half-Marathon":
+    if distance == "Half-Marathon":
         print(colored("The limit for a Half-Marathon race is 03:59", "cyan"))
         hours = pyip.inputInt("hh: \n", min=0, max=3)
         if hours == 0:
@@ -116,7 +117,7 @@ def validate_times(distance):
             minutes = pyip.inputInt("mm: \n", max=59)
         race_time = time(hours, minutes)
         return race_time
-    elif distance == "Marathon":
+    if distance == "Marathon":
         print(colored("The max time for a Marathon race is 06:59", "cyan"))
         hours = pyip.inputInt("hh: \n", min=2, max=6)
         minutes = pyip.inputInt("mm: \n", max=59)
@@ -127,7 +128,7 @@ def validate_times(distance):
 def validate_race_date(input_date):
     """
     Makes sure that the date entered by the user for the client's next race
-    is in the future and before the limit of 12/31/2030
+    is in the future and before the limit of 01/01/2031
     """
     date_limit = date.fromisoformat("2031-01-01")
 
@@ -140,7 +141,7 @@ def validate_race_date(input_date):
             print(colored("The race date limit is 12/31/2030", "red"))
             input_date = pyip.inputDate("Date of next race as mm/dd/yyyy: \n")
         else:
-            return date
+            return input_date
 
 
 def calculate_days_until_next_race(data):
@@ -344,8 +345,7 @@ def edit_client_data(data):
         t.sleep(1.5)
         view_client_data(updated_client)
     elif edit_actions == "Next Race Date":
-        new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy:")
-        print("\n")
+        new_next_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy:\n")
         validated_date = validate_race_date(new_next_race_date)
         running_worksheet.update_cell((data + 1), 7, str(validated_date))
         updated_client = running_worksheet.row_values((data + 1))
