@@ -253,7 +253,7 @@ def edit_client_data(data):
     os.system("cls" if os.name == "nt" else "clear")
     update_client_data = get_client_data(data)
     view_client_data(update_client_data)
-    goal_distance = str(update_client_data[3])
+    # goal_distance = str(update_client_data[3])
     print("\n")
     print(col("What would you like to edit?\n", "magenta"))
     edit_actions = pyip.inputMenu(
@@ -271,94 +271,138 @@ def edit_client_data(data):
     )
 
     if edit_actions == "Name":
-        new_name = pyip.inputRegex(
-            r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update Full Name: \n"
-        ).title()
-        running_worksheet.update_cell((data + 1), 1, new_name)
-        print(col("Client successfully updated \n", "green"))
-        updated_client = running_worksheet.row_values((data + 1))
-        t.sleep(1.5)
-        view_client_data(updated_client)
+        edit_name(data)
     elif edit_actions == "Email":
-        new_email = pyip.inputEmail("Update email address: \n")
-        validated_new_email = validate_email(new_email)
-        running_worksheet.update_cell((data + 1), 2, validated_new_email)
-        print(col("Client successfully updated \n", "green"))
-        updated_client = running_worksheet.row_values((data + 1))
-        t.sleep(1.5)
-        view_client_data(updated_client)
+        edit_email(data)
     elif edit_actions == "Age":
-        new_age = pyip.inputInt("Update age: \n", min=18, max=100)
-        running_worksheet.update_cell((data + 1), 3, new_age)
-        print(col("Client successfully updated \n", "green"))
-        updated_client = running_worksheet.row_values((data + 1))
-        t.sleep(1.5)
-        view_client_data(updated_client)
+        edit_age(data)
     elif edit_actions == "Goal Distance":
-        print(col("You will need to update the current PB for", "cyan"))
-        print(col("this distance and the goal time too \n", "cyan"))
-        t.sleep(1.5)
-        print("New goal distance: \n")
-        new_goal_distance = pyip.inputMenu(
-            ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
-        )
-        while new_goal_distance == goal_distance:
-            print(col("Please select a new distance\n", "red"))
-            new_goal_distance = pyip.inputMenu(
-                ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
-            )
-        print(f"Enter the client's PB for {new_goal_distance}")
-        new_pb = validate_times(new_goal_distance)
-        print(f"Enter the client's goal time for {new_goal_distance}")
-        new_goal_time = validate_times(new_goal_distance)
-        running_worksheet.update_cell((data + 1), 4, new_goal_distance)
-        running_worksheet.update_cell((data + 1), 5, str(new_pb))
-        running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
-        updated_client = running_worksheet.row_values((data + 1))
-        new_pb_pace = calculate_pb(updated_client)
-        new_goal_pace = calculate_goal_pace(updated_client)
-        running_worksheet.update_cell((data + 1), 9, str(new_pb_pace))
-        running_worksheet.update_cell((data + 1), 10, str(new_goal_pace))
-        print(col("Client successfully updated \n", "green"))
-        fully_updated_client = running_worksheet.row_values((data + 1))
-        t.sleep(1.5)
-        view_client_data(fully_updated_client)
+        edit_gd(data)
     elif edit_actions == "Current PB":
-        print(f"Enter the client's updated PB for {goal_distance}")
-        new_pb = validate_times(goal_distance)
-        running_worksheet.update_cell((data + 1), 5, str(new_pb))
-        updated_pb = running_worksheet.row_values((data + 1))
-        new_pb_pace = calculate_pb(updated_pb)
-        running_worksheet.update_cell((data + 1), 9, str(new_pb_pace))
-        updated_client = running_worksheet.row_values((data + 1))
-        print(col("Client successfully updated \n", "green"))
-        t.sleep(1.5)
-        view_client_data(updated_client)
+        edit_current_pb(data)
     elif edit_actions == "Goal Time":
-        print(f"Enter the client's updated goal time for {goal_distance}")
-        new_goal_time = validate_times(goal_distance)
-        running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
-        updated_goal_time = running_worksheet.row_values((data + 1))
-        new_goal_pace = calculate_goal_pace(updated_goal_time)
-        running_worksheet.update_cell((data + 1), 10, str(new_goal_pace))
-        updated_client = running_worksheet.row_values((data + 1))
-        print(col("Client successfully updated \n", "green"))
-        t.sleep(1.5)
-        view_client_data(updated_client)
+        edit_gt(data)
     elif edit_actions == "Next Race Date":
-        new_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy:\n")
-        validated_date = validate_race_date(new_race_date)
-        running_worksheet.update_cell((data + 1), 7, str(validated_date))
-        updated_client = running_worksheet.row_values((data + 1))
-        update_client_days = calculate_days_until_next_race(updated_client)
-        running_worksheet.update_cell((data + 1), 8, str(update_client_days))
-        print(col("Client successfully updated \n", "green"))
-        updated_client = running_worksheet.row_values((data + 1))
-        t.sleep(1.5)
-        view_client_data(updated_client)
+        edit_race_date(data)
     elif edit_actions == "Return to Main Menu":
         os.system("cls" if os.name == "nt" else "clear")
         client_list_menu()
+
+
+def edit_name(data):
+    """Edits the client's name in the database"""
+    new_name = pyip.inputRegex(
+        r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update Full Name: \n"
+    ).title()
+    running_worksheet.update_cell((data + 1), 1, new_name)
+    print(col("Client successfully updated \n", "green"))
+    updated_client = running_worksheet.row_values((data + 1))
+    t.sleep(1.5)
+    view_client_data(updated_client)
+
+
+def edit_email(data):
+    """Edits the client's email in the database"""
+    new_email = pyip.inputEmail("Update email address: \n")
+    validated_new_email = validate_email(new_email)
+    running_worksheet.update_cell((data + 1), 2, validated_new_email)
+    print(col("Client successfully updated \n", "green"))
+    updated_client = running_worksheet.row_values((data + 1))
+    t.sleep(1.5)
+    view_client_data(updated_client)
+
+
+def edit_age(data):
+    """Edits the client's age in the database"""
+    new_age = pyip.inputInt("Update age: \n", min=18, max=100)
+    running_worksheet.update_cell((data + 1), 3, new_age)
+    print(col("Client successfully updated \n", "green"))
+    updated_client = running_worksheet.row_values((data + 1))
+    t.sleep(1.5)
+    view_client_data(updated_client)
+
+
+def edit_gd(data):
+    """
+    Edits the clients goal distance and corresponding
+    current PB and goal time in the database
+    """
+    update_client_data = get_client_data(data)
+    goal_distance = str(update_client_data[3])
+    print(col("You will need to update the current PB for", "cyan"))
+    print(col("this distance and the goal time too \n", "cyan"))
+    t.sleep(1.5)
+    print("New goal distance: \n")
+    new_goal_distance = pyip.inputMenu(
+        ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
+    )
+    while new_goal_distance == goal_distance:
+        print(col("Please select a new distance\n", "red"))
+        new_goal_distance = pyip.inputMenu(
+            ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
+        )
+    print(f"Enter the client's PB for {new_goal_distance}")
+    new_pb = validate_times(new_goal_distance)
+    print(f"Enter the client's goal time for {new_goal_distance}")
+    new_goal_time = validate_times(new_goal_distance)
+    running_worksheet.update_cell((data + 1), 4, new_goal_distance)
+    running_worksheet.update_cell((data + 1), 5, str(new_pb))
+    running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
+    updated_client = running_worksheet.row_values((data + 1))
+    new_pb_pace = calculate_pb(updated_client)
+    new_goal_pace = calculate_goal_pace(updated_client)
+    running_worksheet.update_cell((data + 1), 9, str(new_pb_pace))
+    running_worksheet.update_cell((data + 1), 10, str(new_goal_pace))
+    print(col("Client successfully updated \n", "green"))
+    fully_updated_client = running_worksheet.row_values((data + 1))
+    t.sleep(1.5)
+    view_client_data(fully_updated_client)
+
+
+def edit_current_pb(data):
+    """Edits the client's current PB"""
+    update_client_data = get_client_data(data)
+    goal_distance = str(update_client_data[3])
+    print(f"Enter the client's updated PB for {goal_distance}")
+    new_pb = validate_times(goal_distance)
+    running_worksheet.update_cell((data + 1), 5, str(new_pb))
+    updated_pb = running_worksheet.row_values((data + 1))
+    new_pb_pace = calculate_pb(updated_pb)
+    running_worksheet.update_cell((data + 1), 9, str(new_pb_pace))
+    updated_client = running_worksheet.row_values((data + 1))
+    print(col("Client successfully updated \n", "green"))
+    t.sleep(1.5)
+    view_client_data(updated_client)
+
+
+def edit_gt(data):
+    """Edits the client's goal time in the database"""
+    update_client_data = get_client_data(data)
+    goal_distance = str(update_client_data[3])
+    print(f"Enter the client's updated goal time for {goal_distance}")
+    new_goal_time = validate_times(goal_distance)
+    running_worksheet.update_cell((data + 1), 6, str(new_goal_time))
+    updated_goal_time = running_worksheet.row_values((data + 1))
+    new_goal_pace = calculate_goal_pace(updated_goal_time)
+    running_worksheet.update_cell((data + 1), 10, str(new_goal_pace))
+    updated_client = running_worksheet.row_values((data + 1))
+    print(col("Client successfully updated \n", "green"))
+    t.sleep(1.5)
+    view_client_data(updated_client)
+
+
+def edit_race_date(data):
+    """Edits the client's race date in the database"""
+    new_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy:\n")
+    validated_date = validate_race_date(new_race_date)
+    running_worksheet.update_cell((data + 1), 7, str(validated_date))
+    updated_client = running_worksheet.row_values((data + 1))
+    update_client_days = calculate_days_until_next_race(updated_client)
+    running_worksheet.update_cell((data + 1), 8, str(update_client_days))
+    print(col("Client successfully updated \n", "green"))
+    updated_client = running_worksheet.row_values((data + 1))
+    t.sleep(1.5)
+    view_client_data(updated_client)
 
 
 def delete_client_data(data):
