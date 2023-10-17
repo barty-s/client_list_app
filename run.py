@@ -137,7 +137,7 @@ def validate_race_date(input_date):
 def calculate_days_until_next_race(data):
     """
     Calculates a countdown for how many
-    days are left until the client's race day
+    days are left until the client's next race
     """
     next_race = data[6]
     next_race_date = date.fromisoformat(next_race)
@@ -147,7 +147,7 @@ def calculate_days_until_next_race(data):
 
 def append_days_til_race(data, days):
     """
-    Appends the days until the next race calculation to the client's data
+    Appends the days-until-the-next-race calculation to the client's data
     """
     data.append(days)
     return data
@@ -239,10 +239,10 @@ def get_client_data(data):
     Retreives client's data using their email
     address and updates the days til race countdown
     """
-    retrieved_data = running_worksheet.row_values((data + 1))
+    retrieved_data = retrieve_row(data)
     updated_days = calculate_days_until_next_race(retrieved_data)
     update_wks_cell(data, 8, str(updated_days))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     return updated_client
 
 
@@ -298,8 +298,9 @@ def edit_name(data):
     ).title()
     update_wks_cell(data, 1, new_name)
     print(col("Client successfully updated \n", "green"))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(updated_client)
 
 
@@ -311,8 +312,9 @@ def edit_email(data):
     validated_new_email = validate_email(new_email)
     update_wks_cell(data, 2, validated_new_email)
     print(col("Client successfully updated \n", "green"))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(updated_client)
 
 
@@ -323,8 +325,9 @@ def edit_age(data):
     new_age = pyip.inputInt("Update age: \n", min=18, max=100)
     update_wks_cell(data, 3, new_age)
     print(col("Client successfully updated \n", "green"))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(updated_client)
 
 
@@ -338,6 +341,7 @@ def edit_gd(data):
     print(col("You will need to update the current PB for", "cyan"))
     print(col("this distance and the goal time too \n", "cyan"))
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     print("New goal distance: \n")
     new_goal_distance = pyip.inputMenu(
         ["5km", "10km", "Half-Marathon", "Marathon"], numbered=True
@@ -354,14 +358,15 @@ def edit_gd(data):
     update_wks_cell(data, 4, new_goal_distance)
     update_wks_cell(data, 5, str(new_pb))
     update_wks_cell(data, 6, str(new_goal_time))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     new_pb_pace = calculate_pb(updated_client)
     new_goal_pace = calculate_goal_pace(updated_client)
     update_wks_cell(data, 9, str(new_pb_pace))
     update_wks_cell(data, 10, str(new_goal_pace))
     print(col("Client successfully updated \n", "green"))
-    fully_updated_client = running_worksheet.row_values((data + 1))
+    fully_updated_client = retrieve_row(data)
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(fully_updated_client)
 
 
@@ -374,12 +379,13 @@ def edit_current_pb(data):
     print(f"Enter the client's updated PB for {goal_distance}")
     new_pb = validate_times(goal_distance)
     update_wks_cell(data, 5, str(new_pb))
-    updated_pb = running_worksheet.row_values((data + 1))
+    updated_pb = retrieve_row(data)
     new_pb_pace = calculate_pb(updated_pb)
     update_wks_cell(data, 9, str(new_pb_pace))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     print(col("Client successfully updated \n", "green"))
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(updated_client)
 
 
@@ -390,12 +396,13 @@ def edit_gt(data):
     print(f"Enter the client's updated goal time for {goal_distance}")
     new_goal_time = validate_times(goal_distance)
     update_wks_cell(data, 6, str(new_goal_time))
-    updated_goal_time = running_worksheet.row_values((data + 1))
+    updated_goal_time = retrieve_row(data)
     new_goal_pace = calculate_goal_pace(updated_goal_time)
     update_wks_cell(data, 10, str(new_goal_pace))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     print(col("Client successfully updated \n", "green"))
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(updated_client)
 
 
@@ -404,12 +411,13 @@ def edit_race_date(data):
     new_race_date = pyip.inputDate("Date of next race as mm/dd/yyyy:\n")
     validated_date = validate_race_date(new_race_date)
     update_wks_cell(data, 7, str(validated_date))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     update_client_days = calculate_days_until_next_race(updated_client)
     update_wks_cell(data, 8, str(update_client_days))
     print(col("Client successfully updated \n", "green"))
-    updated_client = running_worksheet.row_values((data + 1))
+    updated_client = retrieve_row(data)
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
     view_client_data(updated_client)
 
 
@@ -418,6 +426,14 @@ def update_wks_cell(data, index, info):
     Updates a given cell in the googlesheets database
     """
     running_worksheet.update_cell((data + 1), index, info)
+
+
+def retrieve_row(data):
+    """
+    Retrieves the row of data for a given client
+    """
+    retrieved_data = running_worksheet.row_values((data + 1))
+    return retrieved_data
 
 
 def delete_client_data(data):
@@ -495,7 +511,7 @@ def client_list_menu():
 
 def add_client():
     """
-    Calls the fucntions to allow user
+    Calls the functions to allow user
     to add a new client to the database
     """
     new_client = new_client_data()
