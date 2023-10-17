@@ -216,6 +216,7 @@ def add_new_client_to_worksheet(data):
     t.sleep(1.5)
     print(col("Client successfully added!\n", "green"))
     t.sleep(1.5)
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def search_client_email():
@@ -253,7 +254,6 @@ def edit_client_data(data):
     os.system("cls" if os.name == "nt" else "clear")
     update_client_data = get_client_data(data)
     view_client_data(update_client_data)
-    # goal_distance = str(update_client_data[3])
     print("\n")
     print(col("What would you like to edit?\n", "magenta"))
     edit_actions = pyip.inputMenu(
@@ -290,7 +290,9 @@ def edit_client_data(data):
 
 
 def edit_name(data):
-    """Edits the client's name in the database"""
+    """
+    Edits the client's name in the database
+    """
     new_name = pyip.inputRegex(
         r"^([A-Za-z]+\s[A-Za-z]+)$", prompt="Update Full Name: \n"
     ).title()
@@ -302,7 +304,9 @@ def edit_name(data):
 
 
 def edit_email(data):
-    """Edits the client's email in the database"""
+    """
+    Edits the client's email in the database
+    """
     new_email = pyip.inputEmail("Update email address: \n")
     validated_new_email = validate_email(new_email)
     running_worksheet.update_cell((data + 1), 2, validated_new_email)
@@ -313,7 +317,9 @@ def edit_email(data):
 
 
 def edit_age(data):
-    """Edits the client's age in the database"""
+    """
+    Edits the client's age in the database
+    """
     new_age = pyip.inputInt("Update age: \n", min=18, max=100)
     running_worksheet.update_cell((data + 1), 3, new_age)
     print(col("Client successfully updated \n", "green"))
@@ -360,7 +366,9 @@ def edit_gd(data):
 
 
 def edit_current_pb(data):
-    """Edits the client's current PB"""
+    """
+    Edits the client's current PB
+    """
     update_client_data = get_client_data(data)
     goal_distance = str(update_client_data[3])
     print(f"Enter the client's updated PB for {goal_distance}")
@@ -415,7 +423,7 @@ def delete_client_data(data):
     view_client_data(search_client_data)
     print("\n")
     print(col("Are you sure you want to delete this client?", "magenta"))
-    delete_query = pyip.inputYesNo(col("Enter y/n\n", "magenta"))
+    delete_query = pyip.inputYesNo(col("Please type y or n\n", "magenta"))
 
     if delete_query == "yes":
         running_worksheet.delete_rows((data + 1))
@@ -464,54 +472,82 @@ def client_list_menu():
     )
     print("\n")
     if actions == "Add a client":
-        new_client = new_client_data()
-        days_countdown = calculate_days_until_next_race(new_client)
-        client_appended_days = append_days_til_race(new_client, days_countdown)
-        client_pb = calculate_pb(new_client)
-        client_appended_pb = append_race_pace(client_appended_days, client_pb)
-        client_goal_pace = calculate_goal_pace(new_client)
-        client_appended_race_pace = append_race_pace(
-            client_appended_pb, client_goal_pace
-        )
-        add_new_client_to_worksheet(client_appended_race_pace)
-        view_client_data(new_client)
-        print("\n")
-        client_list_menu()
+        add_client()
     elif actions == "View a client":
-        searched_client_index = search_client_email()
-        if searched_client_index:
-            searched_client_data = get_client_data(searched_client_index)
-            print("\n")
-            view_client_data(searched_client_data)
-            print("\n")
-            client_list_menu()
-        else:
-            print("\n")
-            client_list_menu()
+        view_client()
     elif actions == "Edit a client":
-        searched_client_index = search_client_email()
-        if searched_client_index:
-            print("\n")
-            edit_client_data(searched_client_index)
-            print("\n")
-            client_list_menu()
-        else:
-            print("\n")
-            client_list_menu()
+        edit_client()
     elif actions == "Delete a client":
-        searched_client_index = search_client_email()
-        if searched_client_index:
-            delete_client_data(searched_client_index)
-            print("\n")
-            client_list_menu()
-        else:
-            print("\n")
-            client_list_menu()
+        delete_client()
     elif actions == "Exit":
         os.system("cls" if os.name == "nt" else "clear")
         print("\n")
         print(col("See you next time! \n", "cyan"))
         sys.exit()
+
+
+def add_client():
+    """
+    Calls the fucntions to allow user
+    to add a new client to the database
+    """
+    new_client = new_client_data()
+    days_countdown = calculate_days_until_next_race(new_client)
+    client_appended_days = append_days_til_race(new_client, days_countdown)
+    client_pb = calculate_pb(new_client)
+    client_appended_pb = append_race_pace(client_appended_days, client_pb)
+    client_goal_pace = calculate_goal_pace(new_client)
+    client_appended_race_pace = append_race_pace(client_appended_pb, client_goal_pace)
+    add_new_client_to_worksheet(client_appended_race_pace)
+    view_client_data(new_client)
+    print("\n")
+    client_list_menu()
+
+
+def view_client():
+    """
+    Calls the functions to display the client's data to the user
+    """
+    searched_client_index = search_client_email()
+    if searched_client_index:
+        searched_client_data = get_client_data(searched_client_index)
+        print("\n")
+        view_client_data(searched_client_data)
+        print("\n")
+        client_list_menu()
+    else:
+        print("\n")
+        client_list_menu()
+
+
+def edit_client():
+    """ "
+    Calls the functions to allow user to edit client's data
+    """
+    searched_client_index = search_client_email()
+    if searched_client_index:
+        print("\n")
+        edit_client_data(searched_client_index)
+        print("\n")
+        client_list_menu()
+    else:
+        print("\n")
+        client_list_menu()
+
+
+def delete_client():
+    """
+    Calls the functions to allow user to delete
+    the selected client's data from the database
+    """
+    searched_client_index = search_client_email()
+    if searched_client_index:
+        delete_client_data(searched_client_index)
+        print("\n")
+        client_list_menu()
+    else:
+        print("\n")
+        client_list_menu()
 
 
 def main():
