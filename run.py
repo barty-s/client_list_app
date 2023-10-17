@@ -452,9 +452,13 @@ def delete_client_data(data):
         running_worksheet.delete_rows((data + 1))
         t.sleep(1.5)
         print(col("Client successfully deleted \n", "green"))
+        t.sleep(1.5)
+        os.system("cls" if os.name == "nt" else "clear")
     else:
         t.sleep(1.5)
         print(col("Client data not deleted \n", "yellow"))
+        t.sleep(1.5)
+        os.system("cls" if os.name == "nt" else "clear")
 
 
 def view_client_data(data):
